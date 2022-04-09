@@ -13,4 +13,4 @@ function getMovieData() {
     });
 }
 
-submitButton.addEventListener("click", MovieData);
+submitButton.addEventListener("click", getMovieData);

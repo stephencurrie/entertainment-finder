@@ -1,0 +1,22 @@
+:root {
+}
+/* This is just for visibility, can be deleted later */
+#resultCardContainer {
+  background-color: aliceblue;
+  border: solid black 1px;
+  min-height: 100px;
+  min-width: 100px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  height: 5rem;
+  background-color: lightblue;
+  width: 100%;
+}
+
+body {
+  min-height: 100vh;
+  position:relative;
+}

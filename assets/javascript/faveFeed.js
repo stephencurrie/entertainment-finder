@@ -292,9 +292,9 @@ let faveList = JSON.parse(localStorage.getItem("favorites")) ?? [];
 
 // this sorts the movies in ascending order to assist the user in their main goal: viewing the closest upcoming favorites
 // moment is used to convert the date into a sequential format, so they can be compared and sorted
-// faveList.sort((a, b) => {
-//   return moment(a.Released) - moment(b.Released);
-// });
+faveList.sort((a, b) => {
+  return moment(a.Released) - moment(b.Released);
+});
 
 const today = moment();
 // this function does the heavy lifting of the page, clearing the HTML and using faveList to create all the cards
@@ -314,7 +314,7 @@ function populateAllCards() {
       element.imdbID +
       `>` +
       element.Title +
-      `</a><button class="rmvFavBtn" data-imdbID="` +
+      `</a><button class="rmvFavBtn" data-imdbid="` +
       element.imdbID +
       `">Remove</button><img src="` +
       element.Poster +
@@ -330,7 +330,7 @@ function populateAllCards() {
       element.Actors +
       `</p>`;
     newCard.classList.add("favCard", "TBDclass");
-    newCard.dataset.imdbID = element.imdbID;
+    newCard.dataset.imdbid = element.imdbID;
 
     if (today.isBefore(parsedReleaseDate)) {
       newCard.classList.add("upcomingCard");
@@ -355,16 +355,19 @@ if (faveList.length > 0) {
     "Nothing here yet! Try searching for new favorites using the search tool!";
 }
 
-// this is currently bugged; for some reason the console.log of target.dataset.imdbID returns undefined
 function rmvBtnHandler(target) {
   // this searches for and removes the imdbID frome the faveList
-  console.log(target.dataset.imdbID)
-  faveList.splice(faveList.indexOf(target.dataset.imdbID), 1);
-  //  resets the localStorage to match faveList
-  localStorage.setItem("favorites", JSON.stringify(faveList));
-  populateAllCards();
-}
 
+  for (let i = 0; i < faveList.length; i++) {
+    if (faveList[i].imdbID === target.dataset.imdbid) {
+      faveList.splice(i, 1);
+      //  resets the localStorage to match faveList
+      localStorage.setItem("favorites", JSON.stringify(faveList));
+      populateAllCards();
+      break;
+    }
+  }
+}
 // event listener on main to help us handle the buttons that were created in the displayCard function
 mainEl.addEventListener("click", function (event) {
   event.stopPropagation;

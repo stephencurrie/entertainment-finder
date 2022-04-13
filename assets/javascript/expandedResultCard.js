@@ -100,10 +100,16 @@ getMovieData();
 
 function rmvBtnHandler() {
   const removeBtnEl = document.querySelector(".rmvFavBtn");
+  for (let i = 0; i < faveList.length; i++) {
+    if (faveList[i].imdbID === imdbID) {
+      movieFaveIndex = i;
+      removeBtnEl.innerText = "Remove from Favorites";
+      break;
+    }
+  }
   if (movieFaveIndex === null) {
     faveList.push(currentMovieInfo);
     localStorage.setItem("favorites", JSON.stringify(faveList));
-    movieFaveIndex = faveList.length - 1;
     removeBtnEl.innerText = "Remove from Favorites";
   } else if (movieFaveIndex !== null) {
     faveList.splice(movieFaveIndex, 1);

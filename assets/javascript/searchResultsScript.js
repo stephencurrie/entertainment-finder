@@ -30,21 +30,27 @@ form.addEventListener('submit', formSumbitHandler);
 let ApiKey = '1288fee4b00de870e735f788ed6723bc'
 
 function fetchMovies (movie) {
- let url = `https://api.themoviedb.org/3/movie/550?api_key=1288fee4b00de870e735f788ed6723bc`
+ let url = `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/movie/550?api_key=1288fee4b00de870e735f788ed6723bc`
 
 
-    fetch(url)
-    .then(function(response) {
-        console.log(response);
-        return response.json();
-    })
+
+ 
+//   fetch functionality to pull the API info
+fetch(url)
+.then(function (response) {
+    if (response.ok) {
+      response.json()
+      .then(function (movieData) {
+        console.log(movieData);
+      })
+    } else {
+        console.log("404 error");
+// need to inform user that there's a 404 error if they get to this else
+    }
+  });
 }
 
-
-
-
-
-// // function for each movie or each section. for each move, do the following before displaying
+// function for each movie or each section. for each move, do the following before displaying
 function movies (movie) {
     let li = document.creatElement('li'),
          img = document.createElement('img'),
@@ -55,10 +61,9 @@ function movies (movie) {
          span.innerHTML = `${movie.name} ${movie.cast}`;
 
 
-         
-         append (li, img);
-         append (li, span);
-         append (resultCardContainer, li);
+        document.body.appendChild(li)
+        document.body.appendChild(img)
+        document.body.appendChild(span)
 }
 
 
@@ -69,7 +74,3 @@ function movies (movie) {
 
 
 
-
-//     if(movie){
-//         fetchFunc(movie);
-//         getMovieInfo(movie);

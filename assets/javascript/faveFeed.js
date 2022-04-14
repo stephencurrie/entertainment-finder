@@ -308,18 +308,24 @@ function populateAllCards() {
     const parsedReleaseDate = moment(element.Released, "DD MMM YYYY").format(
       "MM/DD/YYYY"
     );
+    let releaseDateDisplayString = "";
+      if (today.isBefore(parsedReleaseDate)) {
+        releaseDateDisplayString = parsedReleaseDate+` - Days Remaining: `+(-(today.diff(parsedReleaseDate, "days"))+1)
+      }else{
+        releaseDateDisplayString = parsedReleaseDate
+      }
     let newCard = document.createElement("div");
     newCard.innerHTML =
-      `<a href = Expanded Card page URL goes here TBD?q=` +
+      `<a href = "expandedResultCard.html?imdbID=` +
       element.imdbID +
-      `>` +
+      `">` +
       element.Title +
       `</a><button class="rmvFavBtn" data-imdbid="` +
       element.imdbID +
       `">Remove</button><img src="` +
       element.Poster +
       `"></img><p>Release Date: ` +
-      parsedReleaseDate +
+      releaseDateDisplayString +
       `</p><p>Genre: ` +
       element.Genre +
       `</p><p>Plot: ` +

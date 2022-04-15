@@ -182,14 +182,42 @@ function fetchMovies() {
     }
   });
 }
+
 function fetchImdbIDs(tmdbData) {
+
+  var tmdbIDList=[];
+
+  //for each function to make an array of tmdbID from the result
+  for (var i=0; i<tmdbData.results.length; i++) {
+   tmdbIDList.push(tmdbData.results[i].id)
+  }
+
+  console.log(tmdbIDList)
+  var imdbIDList=[];
+
+  //for each function to convert tmdb ID to imdb ID and collect in an array
+  for (var i=0; i<tmdbIDList.length; i++) {
+    url='https://api.themoviedb.org/3/movie/'+tmdbIDList[i]+'?api_key='+tmdbApiKey
+    fetch(url).then(function(response){
+      if(response.ok) {
+        response.json().then(function(data){
+          
+          imdbIDList.push(data.imdb_id)
+    
+        })
+      }
+    })
+    
+    
+  }
+  console.log(imdbIDList)
   // Need a function here to iterate through the tmdbData to make calls to the tmdb API, using tmdb IDs to return the imdb ID of each movie.
   // We assemble an array of imdb IDs of each returned movie, then we iterate through that array, using the imdbIDs to make an OMDB API call to get the fleshed out details
-}
 
+} 
 // not implemented yet. This is the OMDB api call that will return the most info; the reults of this will be what is displayed on the cards
 function getMovieData() {
-  imdbID = "TBD ID, probably an index of an array from fetchImdbIDs";
+  // imdbID = "TBD ID, probably an index of an array from fetchImdbIDs";
   const omdbURL =
     omdbBaseURL + "i=" + imdbID + "&plot=full&apikey=" + omdbAPIKey;
 
@@ -208,4 +236,4 @@ searchBtnEl.addEventListener("click", function () {
   determineParameters();
 });
 
-initGenreSelectCreation();
+initGenreSelectCreation()

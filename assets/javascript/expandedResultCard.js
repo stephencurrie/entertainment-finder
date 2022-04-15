@@ -49,13 +49,13 @@ function createCard(movieData) {
   }
   // this creates a new card and fills it with the desired information
   newCard.innerHTML =
-    `<h2>` +
+    `<h2 class="card-header-title">` +
     movieData.Title +
-    `</h2><button class="rmvFavBtn" data-imdbid="` +
+    `</h2><button class="rmvFavBtn button is-danger" data-imdbid="` +
     movieData.imdbID +
     `">Add to Favorites</button><p>Runtime: ` +
     movieData.Runtime +
-    `</p><img src="` +
+    `</p><img class="card-image" src="` +
     movieData.Poster +
     `"></img><p>Release Date: ` +
     parsedReleaseDate +
@@ -80,7 +80,7 @@ function createCard(movieData) {
     `</p>` +
     ratingsHTML +
     `</p>`;
-  newCard.classList.add("favCard");
+  newCard.classList.add("favCard", "column", "is-10", "is-offset-1", "card");
 
   // decides whether or not to add a button to make a calendar event
   if (today.isBefore(parsedReleaseDate)) {

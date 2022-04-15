@@ -1,16 +1,1 @@
-:root {
-}
-/* This is just for visibility, can be deleted later */
-#expandedInfoCard {
-  background-color: aliceblue;
-  border: solid black 1px;
-  min-height: 100px;
-  min-width: 100px;
-}
-/* This is just for visibility, can be deleted later */
 
-/* This is just for visibility, can be deleted later */
-body {
-  min-height: 100vh;
-  position:relative;
-}

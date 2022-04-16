@@ -11,3 +11,18 @@
     --orange: #dc965a;
     --red: #c81d25;
 }
+
+
+.rmvFavBtn {
+  background-color: #4059ad;
+  padding: 5px;
+  width: 30%;
+}
+
+/* .upcomingCardContainer{
+  
+}
+.imgClass {
+  display: flex;
+  justify-content: right;
+} */

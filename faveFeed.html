@@ -10,17 +10,40 @@
   </head>
 
   <body>
-    <header>
-      <h1>Entertainment Finder</h1>
-      <nav></nav>
-    </header>
-    <main>
-      <div id="upcomingContainer">
-        <h2>Upcoming Favorites</h2>
-        <div id="upcomingCardContainer"></div>
+
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://stephencurrie.github.io/entertainment-finder/">Movie Finder
+        </a>
+    
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
       </div>
 
-      <div id="alreadyReleasedContainer">
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-end">
+            <a class="navbar-item" href="index.html"> Home</a>
+            <a class="navbar-item" href="searchResults.html"> Advanced Search</a>
+            <a class="navbar-item" href="faveFeed.html"> Favorites</a>
+            <a class="navbar-item"> Team</a>
+
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div id="upcomingContainer" class="section">
+        <h2>Upcoming Favorites</h2>
+        <div id="upcomingCardContainer"></div>
+
+      </div>
+
+      <div id="alreadyReleasedContainer" class="section">
         <h2>Already Released Favorites</h2>
         <div id="alreadyReleasedCardContainer"></div>
       </div>

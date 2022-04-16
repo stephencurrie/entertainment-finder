@@ -296,7 +296,7 @@ faveList.sort((a, b) => {
   return moment(a.Released) - moment(b.Released);
 });
 
-const today = moment();
+const today = moment();    
 // this function does the heavy lifting of the page, clearing the HTML and using faveList to create all the cards
 function populateAllCards() {
   upcomingCardContainerEl.innerHTML = "";
@@ -319,25 +319,37 @@ function populateAllCards() {
     }
     let newCard = document.createElement("div");
     newCard.innerHTML =
-      `<a href = "expandedResultCard.html?imdbID=` +
+    // Movie Info
+      `<div><a class="title is-large" href = "expandedResultCard.html?imdbID=` +
       element.imdbID +
       `">` +
       element.Title +
-      `</a><button class="rmvFavBtn" data-imdbid="` +
-      element.imdbID +
-      `">Remove</button><img src="` +
-      element.Poster +
-      `"></img><p>Release Date: ` +
+      `</a>
+      <p>Release Date: ` +
       releaseDateDisplayString +
-      `</p><p>Genre: ` +
+      `</p>
+      <p>Genre: ` +
       element.Genre +
-      `</p><p>Plot: ` +
+      `</p>
+      <p>Plot: ` +
       element.Plot +
-      `</p><p>Director: ` +
+      `</p>
+      <p>Director: ` +
       element.Director +
-      `</p><p>Top Billed Cast: ` +
+      `</p>
+      <p>Top Billed Cast: ` +
       element.Actors +
-      `</p>`;
+      `</p>
+      <button class="rmvFavBtn" data-imdbid="` +
+      element.imdbID +
+      `">Remove</button></div>` +
+      // Poster
+      // find the row class in the framework and use it for these two 
+      `<section class="imgClass"> <img class="" src="` +
+      element.Poster +
+      `"></img> </section>`;
+
+
     newCard.classList.add("favCard", "TBDclass");
     newCard.dataset.imdbid = element.imdbID;
 
@@ -394,3 +406,13 @@ mainEl.addEventListener("click", function (event) {
 window.addEventListener("focus", function () {
   document.location.reload(true);
 });
+
+// var test1El = document.querySelector("#test1");
+// var test2El = document.querySelector("#test2");
+// var test3El = document.querySelector("#test3");
+// var test4El = document.querySelector("#test4");
+
+// test1El.textContent = Release;
+// test2El.textContent = ;
+// test3El.textContent = ;
+// test4El.textContent = ;

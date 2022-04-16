@@ -1,4 +1,3 @@
-* {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -45,4 +44,18 @@ h2 {
 
 #links {
   text-align: right;
+} */
+
+.rmvFavBtn {
+  background-color: #4059ad;
+  padding: 5px;
+  width: 30%;
+}
+
+/* .upcomingCardContainer{
+  
+}
+.imgClass {
+  display: flex;
+  justify-content: right;
 } */

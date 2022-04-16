@@ -25,7 +25,7 @@ function fetchFaveData() {
             faveListDataArray.sort((a, b) => {
               return moment(a.release_date) - moment(b.release_date);
             });
-            console.log(faveListDataArray);
+
             populateAllCards();
           }
         });
@@ -109,23 +109,23 @@ function populateAllCards() {
   });
 }
 
-if (faveList.length > 0) {
-  fetchFaveData();
-} else {
-  upcomingCardContainerEl.innerText =
-    "Nothing here yet! Try searching for new favorites using the search tool!";
-  alreadyReleasedCardContainerEl.innerText =
-    "Nothing here yet! Try searching for new favorites using the search tool!";
+function initialize() {
+  if (faveList.length > 0) {
+    fetchFaveData();
+  } else {
+    upcomingCardContainerEl.innerText =
+      "Nothing here yet! Try searching for new favorites using the search tool!";
+    alreadyReleasedCardContainerEl.innerText =
+      "Nothing here yet! Try searching for new favorites using the search tool!";
+  }
+}
+function rmvBtnHandler(target) {
+  if (faveList.indexOf(target.dataset.tmdbid) !== -1)
+    faveList.splice(faveList.indexOf(target.dataset.tmdbid), 1);
+  localStorage.setItem("favorites", JSON.stringify(faveList));
+  initialize();
 }
 
-function rmvBtnHandler(target) {
-  console.log(target.dataset.tmdbid)
-  if(faveList.indexOf(target.dataset.tmdbid) !== -1)
-    faveList.splice(faveList.indexOf(target.dataset.tmdbid), 1);
-    localStorage.setItem("favorites", JSON.stringify(faveList));
-   fetchFaveData();
-  }
-  
 // event listener on main to help us handle the buttons that were created in the displayCard function
 mainEl.addEventListener("click", function (event) {
   event.stopPropagation;
@@ -137,11 +137,11 @@ mainEl.addEventListener("click", function (event) {
   //   need to add an if function into this listener that references the "create calendar event" classes
 });
 
-// this eventListener will reload the page when the user navigates back to it; this accounts for the user adding more favorites and
-// coming back to this page. If it's not reloaded after adding favorites from the search page
-// the present variables on this page could reset the localstorage to an earlier state
+// this eventListener will rerun the initializing functions when the user navigates back to it; this accounts for the user adding more favorites and
+// coming back to this page.
 window.addEventListener("focus", function () {
-  document.location.reload(true);
+  faveList = JSON.parse(localStorage.getItem("favorites")) ?? [];
+  initialize();
 });
 
 // var test1El = document.querySelector("#test1");

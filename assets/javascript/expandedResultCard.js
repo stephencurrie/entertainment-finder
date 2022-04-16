@@ -150,6 +150,7 @@ mainCardEl.addEventListener("click", function (event) {
 // tabbing back to this page. If it's not reloaded after adding favorites from the search page
 // the present variables on this page could reset the localstorage to an earlier state
 window.addEventListener("focus", function () {
+  faveList = JSON.parse(localStorage.getItem("favorites")) ?? [];
   const removeBtnEl = document.querySelectorAll(".rmvFavBtn");
   removeBtnEl.forEach((element) => {
     if (faveList.indexOf(element.dataset.tmdbid) !== -1) {

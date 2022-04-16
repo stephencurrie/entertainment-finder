@@ -1,4 +1,10 @@
-:root {
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  
+  :root {
     --dark: #12100e;
     --light: #e6fafc;
     --blue: #4059ad;
@@ -8,8 +14,20 @@
 
 body {
     font-family: 'GothamPro';
+    width: 100%;
 }
 
 h1 {
     font-size: 82px;
+   position: relative; 
 }
+
+.hero {
+    width: 100%;
+  }
+
+  h1, #form {
+    max-width: 1000px;
+    margin: auto;
+  }
+  

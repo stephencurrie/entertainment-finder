@@ -1,5 +1,17 @@
-:root {
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
+
+:root {
+  --dark: #12100e;
+  --light: #e6fafc;
+  --blue: #4059ad;
+  --orange: #dc965a;
+  --red: #c81d25;
+}
+
 /* This is just for visibility, can be deleted later */
 #expandedInfoCard {
   background-color: aliceblue;

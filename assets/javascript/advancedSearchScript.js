@@ -233,7 +233,6 @@ function fetchMovies() {
 }
 
 function displayCards(tmdbData) {
-  console.log(tmdbData);
   resultCardContainerEl.innerHTML = "";
   tmdbData.results.forEach((element) => {
     parsedReleaseDate = moment(element.release_date, "YYYY-MM-DD").format(
@@ -288,7 +287,6 @@ function rmvBtnHandler(target) {
   const removeBtnEl = document.querySelector(".rmvFavBtn");
   // determines the current position of the selected movie in the faveList array, or leaves it as null if it's not in the array
   if (target.dataset.state === "0") {
-    console.log("We here");
     target.innerText = "Remove from Favorites";
     target.dataset.state = 1;
     faveList.push(target.dataset.tmdbid);
@@ -296,7 +294,7 @@ function rmvBtnHandler(target) {
   }
   // decides whether the movie is in faveList and adds or removes it
   else if (target.dataset.state === "1") {
-    removeBtnEl.innerText = "Add to Favorites";
+    target.innerText = "Add to Favorites";
     target.dataset.state = 0;
     faveList.splice(faveList.indexOf(target.dataset.tmdbid), 1);
     localStorage.setItem("favorites", JSON.stringify(faveList));
@@ -304,7 +302,7 @@ function rmvBtnHandler(target) {
 }
 
 resultCardContainerEl.addEventListener("click", function (event) {
-  event.stopPropagation;
+  event.stopPropagation();
   const target = event.target;
   //   determines if the target has the rmvFavBtn class and runs the rmvBtnHandler function if so
   if (target.classList.contains("rmvFavBtn")) {
@@ -318,7 +316,16 @@ resultCardContainerEl.addEventListener("click", function (event) {
 // the present variables on this page could reset the localstorage to an earlier state
 
 window.addEventListener("focus", function () {
-  document.location.reload(true);
+  const removeBtnEl = document.querySelectorAll(".rmvFavBtn");
+  removeBtnEl.forEach((element) => {
+    if (faveList.indexOf(element.dataset.tmdbid) !== -1) {
+      element.dataset.state = 1;
+      element.innerText = "Remove from Favorites";
+    } else {
+      element.dataset.state = 0;
+      element.innerText = "Add to Favorites";
+    }
+  });
 });
 
 searchBtnEl.addEventListener("click", function () {

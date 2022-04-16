@@ -17,7 +17,6 @@ var getMovieData = function (e) {
   fetch(apiUrl).then(function(response){
     if (response.ok) {
       response.json().then(function(data){
-        console.log(data)
         console.log(data.results)
         if (data.results.length==0){
           resultContainer.innerHTML='<p>No result found. Please try again.</p>'
@@ -29,7 +28,7 @@ var getMovieData = function (e) {
           var posterUrl='https://image.tmdb.org/t/p/original/'+posterPath
           var resultEl=document.createElement('article');
          
-          resultEl.innerHTML='<img src="'+posterUrl+'"/><div><a href = "expandedResultCard.html?imdbID=' +
+          resultEl.innerHTML='<img src="'+posterUrl+'"/><div><a href = "expandedResultCard.html?tmdbID=' +
       resultTMDBId +
       '">'+data.results[i].original_title+'</a><p>Release Date:'+data.results[i].release_date+'</p><button class="rmvFavBtn" data-state=0 data-tmdbid="' +data.results[i].id +
       '">Add to Favorites</button></div>'
@@ -55,7 +54,6 @@ var getMovieData = function (e) {
   
 }
 function rmvBtnHandler(target) {
-  const removeBtnEl = document.querySelector(".rmvFavBtn");
   // determines the current position of the selected movie in the faveList array, or leaves it as null if it's not in the array
   if (target.dataset.state === "0") {
     target.innerText = "Remove from Favorites";
@@ -65,7 +63,7 @@ function rmvBtnHandler(target) {
   }
   // decides whether the movie is in faveList and adds or removes it
   else if (target.dataset.state === "1") {
-    removeBtnEl.innerText = "Add to Favorites";
+    target.innerText = "Add to Favorites";
     target.dataset.state = 0;
     faveList.splice(faveList.indexOf(target.dataset.tmdbid), 1);
     localStorage.setItem("favorites", JSON.stringify(faveList));
@@ -73,7 +71,7 @@ function rmvBtnHandler(target) {
 }
 
 resultContainer.addEventListener("click", function (event) {
-  event.stopPropagation;
+  event.stopPropagation();
   const target = event.target;
   //   determines if the target has the rmvFavBtn class and runs the rmvBtnHandler function if so
   if (target.classList.contains("rmvFavBtn")) {
@@ -94,7 +92,6 @@ var popularMovies = function () {
   fetch(apiUrl).then(function(response){
     if (response.ok) {
       response.json().then(function(data){
-        console.log(data)
         displayPopularMovies(data.results)
       })
     }
@@ -103,15 +100,27 @@ var popularMovies = function () {
 popularMovies()
 
 var displayPopularMovies = function(popular) {
-  console.log(popular)
   for (var i=0; i<5; i++){
         
     var popularTMDBId=popular[i].id
     var posterPath=popular[i].poster_path
     var posterUrl='https://image.tmdb.org/t/p/original/'+posterPath
     var popularEl=document.createElement('div');
-    popularEl.innerHTML='<a href="expandedResultCard.html?imdbID='+popularTMDBId+'"><img src="'+posterUrl+'"/></a>'
+    popularEl.innerHTML='<a href="expandedResultCard.html?tmdbID='+popularTMDBId+'"><img src="'+posterUrl+'"/></a>'
     popularEl.classList=''
     popularMovieContainer.appendChild(popularEl)
   } 
 }
+
+window.addEventListener("focus", function () {
+  const removeBtnEl = document.querySelectorAll(".rmvFavBtn");
+  removeBtnEl.forEach((element) => {
+    if (faveList.indexOf(element.dataset.tmdbid) !== -1) {
+      element.dataset.state = 1;
+      element.innerText = "Remove from Favorites";
+    } else {
+      element.dataset.state = 0;
+      element.innerText = "Add to Favorites";
+    }
+  });
+});

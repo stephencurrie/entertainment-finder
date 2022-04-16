@@ -317,39 +317,37 @@ function populateAllCards() {
     } else {
       releaseDateDisplayString = parsedReleaseDate;
     }
-    let newCard = document.createElement("div");
-    newCard.innerHTML =
-    // Movie Info
-      `<div><a class="title is-large" href = "expandedResultCard.html?imdbID=` +
-      element.imdbID +
-      `">` +
-      element.Title +
-      `</a>
-      <p>Release Date: ` +
-      releaseDateDisplayString +
-      `</p>
-      <p>Genre: ` +
-      element.Genre +
-      `</p>
-      <p>Plot: ` +
-      element.Plot +
-      `</p>
-      <p>Director: ` +
-      element.Director +
-      `</p>
-      <p>Top Billed Cast: ` +
-      element.Actors +
-      `</p>
-      <button class="rmvFavBtn" data-imdbid="` +
-      element.imdbID +
-      `">Remove</button></div>` +
-      // Poster
-      // find the row class in the framework and use it for these two 
-      `<section class="imgClass"> <img class="" src="` +
-      element.Poster +
-      `"></img> </section>`;
-
-
+      let newCard = document.createElement("div");
+      newCard.innerHTML =
+      // Movie Info
+        `<div><a class="title is-large" href = "expandedResultCard.html?imdbID=` +
+        element.imdbID +
+        `">` +
+        element.Title +
+        `</a>
+        <p>Release Date: ` +
+        releaseDateDisplayString +
+        `</p>
+        <p>Genre: ` +
+        element.Genre +
+        `</p>
+        <p>Plot: ` +
+        element.Plot +
+        `</p>
+        <p>Director: ` +
+        element.Director +
+        `</p>
+        <p>Top Billed Cast: ` +
+        element.Actors +
+        `</p>
+        <button class="rmvFavBtn" data-imdbid="` +
+        element.imdbID +
+        `">Remove</button></div>` +
+        // Poster
+        // find the row class in the framework and use it for these two 
+        `<section class="imgClass"> <img class="" src="` +
+        element.Poster +
+        `"></img> </section>`;
     newCard.classList.add("favCard", "TBDclass");
     newCard.dataset.imdbid = element.imdbID;
 

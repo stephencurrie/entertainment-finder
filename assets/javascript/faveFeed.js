@@ -309,11 +309,14 @@ function populateAllCards() {
       "MM/DD/YYYY"
     );
     let releaseDateDisplayString = "";
-      if (today.isBefore(parsedReleaseDate)) {
-        releaseDateDisplayString = parsedReleaseDate+` - Days Remaining: `+(-(today.diff(parsedReleaseDate, "days"))+1)
-      }else{
-        releaseDateDisplayString = parsedReleaseDate
-      }
+    if (today.isBefore(parsedReleaseDate)) {
+      releaseDateDisplayString =
+        parsedReleaseDate +
+        ` - Days Remaining: ` +
+        (-today.diff(parsedReleaseDate, "days") + 1);
+    } else {
+      releaseDateDisplayString = parsedReleaseDate;
+    }
     let newCard = document.createElement("div");
     newCard.innerHTML =
       `<a href = "expandedResultCard.html?imdbID=` +

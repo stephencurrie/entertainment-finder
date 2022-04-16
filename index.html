@@ -51,7 +51,6 @@
           <p class="title">
             Search! Save! Plan! Research! 
           </p>
-          
         </div>  
       </div>  
     </section>
@@ -66,75 +65,63 @@
         <div class="field is-grouped">
           <div class="control">
             <div class="select">
-              <select class="input is-medium" type="submit">
+              <select class="input is-medium" id="genreid" type="submit">
                 <option>Select move genre</option>
-                <option>Action</option>
-                <option>Adventure</option>
-                <option>Animation</option>
-                <option>Comedy</option>
-                <option>Crime</option>
-                <option>Documentary</option>
-                <option>Drama</option>
-                <option>Family</option>
-                <option>Fantasy</option>
-                <option>History</option>
-                <option>Horror</option>
-                <option>Music</option>
-                <option>Mystery</option>
-                <option>Romance</option>
-                <option>Science Fiction</option>
-                <option>Thriller</option>
-                <option>War</option>
-                <option>Western</option>
+                <option value="28">Action</option>
+                <option value="12">Adventure</option>
+                <option value="16">Animation</option>
+                <option value="35">Comedy</option>
+                <option value="80">Crime</option>
+                <option value="99">Documentary</option>
+                <option value="18">Drama</option>
+                <option value="10751">Family</option>
+                <option value="14">Fantasy</option>
+                <option value="36">History</option>
+                <option value="27">Horror</option>
+                <option value="10402">Music</option>
+                <option value="9648">Mystery</option>
+                <option value="10749">Romance</option>
+                <option value="878">Science Fiction</option>
+                <option value="53">Thriller</option>
+                <option value="10752">War</option>
+                <option value="37">Western</option>
               </select>
             </div>
-            
           </div>
+
+          <div class="control">
+            <div class="select">
+              <select class="input is-medium" id="timeframeid" type="submit">
+                <option>Select Time Frame</option>
+                <option value="30">30 Days</option>
+                <option value="60">60 days</option>
+                <option value="90">90 days</option>
+              </select>
+            </div>
+          </div>
+
           <div class="field">
             <div class="control">
               <button class="button is-primary is-medium" id="searchSubmitBtn">Submit</button>
             </div>
-
           </div>
-          
         </div>
        
         <!-- THE SEARCH RESULTS GO IN A TILE -->
-        <div class="tile is-ancestor">
-          <div class="tile is-vertical is-12">
-                <div class="tile is-parent is-vertical">
-                <article class="tile is-child notification is-warning">
-                  <a class=><span style="font-weight: bold;">Fantastic Beasts: The Secrets of Dumbledore</span><span style="display: block;">In an effort to thwart Grindelwald's plans of raising pure-blood wizards to rule over all non-magical beings, Albus Dumbledore enlists his former student Newt Scamander, who agrees to help, though he's unaware of the dangers that lie ahead. Lines are drawn as love and loyalty are tested, even among the truest friends and family, in an increasingly divided wizarding world.</span></a>
-                </article>
-              </div>
-
-              <div class="tile is-parent is-vertical">
-                <article class="tile is-child notification is-warning">
-                  <a class=><span style="font-weight: bold;">Fantastic Beasts: The Secrets of Dumbledore</span><span style="display: block;">In an effort to thwart Grindelwald's plans of raising pure-blood wizards to rule over all non-magical beings, Albus Dumbledore enlists his former student Newt Scamander, who agrees to help, though he's unaware of the dangers that lie ahead. Lines are drawn as love and loyalty are tested, even among the truest friends and family, in an increasingly divided wizarding world.</span></a>
-                </article>
+        <div class="tile is-ancestor" >
+          <div class="tile is-vertical is-12" >
+                <div class="tile is-parent is-vertical" id="result-container">
               </div>
           </div>
         </div>
 
-
- 
-<!--         
-        <form id="form">
-          <input
-            type="text"
-            placeholder="Search..."
-            id="searchBarInput"
-            required
-          />
-          <input type="submit" value="Submit" id="searchSubmitBtn" required />
-        </form> -->
         </div>
       </div>
       
       
       <!-- THIS IS THE RIGHT COLUMN -->
       <div class="column">
-    
+      <h1>Now Playing</h1>
       <div id="popularMovieContainer">
         <div class="pop-movie-cards"></div>
       </div>
@@ -142,15 +129,12 @@
     
     </div>
 
-
-
-
-
-
-
-
     <footer></footer>
-
+    <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js">
+    </script>
     <script src="./assets/javascript/script.js"></script>
+
   </body>
 </html>

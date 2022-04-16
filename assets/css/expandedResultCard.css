@@ -1,3 +1,4 @@
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -21,8 +22,3 @@
 }
 /* This is just for visibility, can be deleted later */
 
-/* This is just for visibility, can be deleted later */
-body {
-  min-height: 100vh;
-  position:relative;
-}

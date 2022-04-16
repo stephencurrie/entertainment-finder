@@ -1,25 +1,35 @@
 var submitButton = document.getElementById("searchSubmitBtn");
 
-function getMovieData() {
-  // Just using the github fetch url to make sure it works
-  var requestUrl = 'http://www.omdbapi.com/?i=tt&apikey=cf7767a2';
+var baseUrl='https://api.themoviedb.org'
+var apiKey='19a1fd696d217cbc89d9176a5b94e4e6'
 
-  fetch(requestUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      
-      console.log(data);
-    });
+var getMovieData = function () {
+  var apiUrl = baseUrl+'/3/discover/movie/?api_key='+apiKey+'&region=US&release_date.gte=2022-04-14&release_date.lte=2022-05-15&with_release_type=3'
+
+
+
+
+  
+  fetch(apiUrl).then(function(response){
+    if (response.ok) {
+      response.json().then(function(data){
+        console.log(data)
+        displayPopularMovies(data.results)
+      })
+    }
+  })
 }
+// getMovieData()
+
+
 
 submitButton.addEventListener("click", getMovieData);
 
+// Da Eun code here
 var submitButton = document.getElementById("searchSubmitBtn");
 var popularMovieContainer = document.getElementById('popularMovieContainer')
-var baseUrl='https://api.themoviedb.org'
-var apiKey='19a1fd696d217cbc89d9176a5b94e4e6'
+// var baseUrl='https://api.themoviedb.org'
+// var apiKey='19a1fd696d217cbc89d9176a5b94e4e6'
 
 
 var popularMovies = function () {

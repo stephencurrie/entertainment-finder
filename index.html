@@ -1,5 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entertainment Finder</title>
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <script src="https://kit.fontawesome.com/1866c76c2a.js" crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+
 
 <head>
   <meta charset="UTF-8" />
@@ -11,31 +24,145 @@
   <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 
-<body>
+  <body>
+    <header>
 
-  <header>
-    <h1>Entertainment Finder</h1>
-    <nav>
 
-    </nav>
-  </header>
 
-  <div class="hero">
-    <form id="form">
-      <input type="text" placeholder="Search..." id="searchBarInput" required>
-      <input type="submit" value="Submit" id="searchSubmitBtn" required>
-    </form>
-  </div>
+      <!-- Navbar uses Bulma framework.  NEED TO SET COLORS AS VARIABLES AND LINK TO CSS.  NEED TO GET HAMBURGER MENU WORKING-->
+      <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://stephencurrie.github.io/entertainment-finder/">Movie Finder
+        </a>
+    
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
 
-  <div id="popularMovieContainer">
-    <div class="pop-movie-cards">
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-end">
+            <a class="navbar-item" href="index.html"> Home</a>
+            <a class="navbar-item" href="searchResults.html"> Advanced Search</a>
+            <a class="navbar-item" href="faveFeed.html"> Favorites</a>
+            <a class="navbar-item"> Team</a>
 
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- I WAS THINKING OF USING THE HERO TO CALL OUT THE FUNCTIONALITY OF THE SITE.  OPEN TO SUGGESTIONS HERE.  MAYBE A BACKGROUND IMAGE? COLOR NEEDS TO BE SET AS A VARIABLE AND LINKED TO CSS-->
+
+    <section class="hero is-primary">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <p class="title">
+            Search! Save! Plan! Research! 
+          </p>
+          
+        </div>  
+      </div>  
+    </section>
+
+
+    <!-- MAIN SECTION HAS TWO COLUMNS.  THE LEFT IS 3/4 WIDTH AND HAS THE SEARCH BOX. THE RIGHT IS 1/4 WIDTH AND HAS THE POPULAR MOVIES.  MAY NEED TO PLAY AROUND WITH THIS IF IT LOOKS WEIRD -->
+    <div class="columns">
+      <div class="column is-three-quarters has-background-info">
+        <div class="column is-offset-1">
+        <h3 class="title is-3">Search for Upcoming Movies by your favorite genre!</h3>
+        
+        <div class="field is-grouped">
+          <div class="control">
+            <div class="select">
+              <select class="input is-medium" type="submit">
+                <option>Select move genre</option>
+                <option>Action</option>
+                <option>Adventure</option>
+                <option>Animation</option>
+                <option>Comedy</option>
+                <option>Crime</option>
+                <option>Documentary</option>
+                <option>Drama</option>
+                <option>Family</option>
+                <option>Fantasy</option>
+                <option>History</option>
+                <option>Horror</option>
+                <option>Music</option>
+                <option>Mystery</option>
+                <option>Romance</option>
+                <option>Science Fiction</option>
+                <option>Thriller</option>
+                <option>War</option>
+                <option>Western</option>
+              </select>
+            </div>
+            
+          </div>
+          <div class="field">
+            <div class="control">
+              <button class="button is-primary is-medium" id="searchSubmitBtn">Submit</button>
+            </div>
+
+          </div>
+          
+        </div>
+       
+        <!-- THE SEARCH RESULTS GO IN A TILE -->
+        <div class="tile is-ancestor">
+          <div class="tile is-vertical is-12">
+                <div class="tile is-parent is-vertical">
+                <article class="tile is-child notification is-warning">
+                  <a class=><span style="font-weight: bold;">Fantastic Beasts: The Secrets of Dumbledore</span><span style="display: block;">In an effort to thwart Grindelwald's plans of raising pure-blood wizards to rule over all non-magical beings, Albus Dumbledore enlists his former student Newt Scamander, who agrees to help, though he's unaware of the dangers that lie ahead. Lines are drawn as love and loyalty are tested, even among the truest friends and family, in an increasingly divided wizarding world.</span></a>
+                </article>
+              </div>
+
+              <div class="tile is-parent is-vertical">
+                <article class="tile is-child notification is-warning">
+                  <a class=><span style="font-weight: bold;">Fantastic Beasts: The Secrets of Dumbledore</span><span style="display: block;">In an effort to thwart Grindelwald's plans of raising pure-blood wizards to rule over all non-magical beings, Albus Dumbledore enlists his former student Newt Scamander, who agrees to help, though he's unaware of the dangers that lie ahead. Lines are drawn as love and loyalty are tested, even among the truest friends and family, in an increasingly divided wizarding world.</span></a>
+                </article>
+              </div>
+          </div>
+        </div>
+
+
+ 
+<!--         
+        <form id="form">
+          <input
+            type="text"
+            placeholder="Search..."
+            id="searchBarInput"
+            required
+          />
+          <input type="submit" value="Submit" id="searchSubmitBtn" required />
+        </form> -->
+        </div>
+      </div>
+      
+      
+      <!-- THIS IS THE RIGHT COLUMN -->
+      <div class="column">
+    
+      <div id="popularMovieContainer">
+        <div class="pop-movie-cards"></div>
+      </div>
+    
+    
     </div>
-  </div>
 
-  <footer></footer>
 
-  <script src="./assets/javascript/searchResultsScript.js"></script>
-</body>
 
+
+
+
+
+
+    <footer></footer>
+
+    <script src="./assets/javascript/script.js"></script>
+  </body>
 </html>

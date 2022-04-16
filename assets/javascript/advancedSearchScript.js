@@ -1,113 +1,3 @@
-// var form = document.querySelector('#form')
-// var searchBarInput = document.querySelector("#searchBarInput");
-// var resultCardContainer= document.querySelector("#resultCardContainer");
-
-// // function to get the user input. Displays an alert if no input
-// var formSumbitHandler = function(event){
-//     // prevent the form form autosubmitting
-//     event.preventDefault();
-
-//     var searchBarInput = document.querySelector('#searchBarInput').value.trim()
-//     console.log(searchBarInput);
-
-//     fetchMovies(searchBarInput);
-// }
-
-// form.addEventListener('submit', formSumbitHandler);
-
-// // let url = 'https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false'
-// // fetch func
-// let ApiKey = '1288fee4b00de870e735f788ed6723bc'
-
-// function fetchMovies (movie) {
-//  let url = `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/movie/550?api_key=1288fee4b00de870e735f788ed6723bc`
-
-// //   fetch functionality to pull the API info
-// fetch(url)
-// .then(function (response) {
-//     if (response.ok) {
-//       response.json()
-//       .then(function (movieData) {
-//         console.log(movieData);
-//       })
-//     } else {
-//         console.log("404 error");
-// // need to inform user that there's a 404 error if they get to this else
-//     }
-//   });
-// }
-
-// // function for each movie or each section. for each move, do the following before displaying
-// function movies (movie) {
-//     let li = document.creatElement('li'),
-//          img = document.createElement('img'),
-//          span = document.createElement('span');
-
-//          img.src = movie.picture.small;
-
-//          span.innerHTML = `${movie.name} ${movie.cast}`;
-
-//         document.body.appendChild(li)
-//         document.body.appendChild(img)
-//         document.body.appendChild(span)
-// }
-
-// .catch(function(error){
-//     console.log(JSON.stringify(error));
-// })
-
-// this was scrapped due to time concerns
-// function fetchImdbIDs(tmdbData) {
-//   var tmdbIDList = [];
-// console.log(tmdbData)
-//   //for each function to make an array of tmdbID from the result
-//   for (var i = 0; i < tmdbData.results.length; i++) {
-//     tmdbIDList.push(tmdbData.results[i].id);
-//   }
-//   imdbIDList = [];
-//   //for each function to convert tmdb ID to imdb ID and collect in an array
-//   for (var i = 0; i < tmdbIDList.length; i++) {
-//     url =
-//       "https://api.themoviedb.org/3/movie/" +
-//       tmdbIDList[i] +
-//       "?api_key=" +
-//       tmdbApiKey;
-//     fetch(url).then(function (response) {
-//       if (response.ok) {
-//         response.json().then(function (data) {
-//           imdbIDList.push(data.imdb_id);
-//           if (imdbIDList.length === tmdbIDList.length) {
-//             getMovieData();
-//           }
-//         });
-//       }
-//     });
-//   }
-// }
-
-// This was scrapped due to time concerns
-// function getMovieData() {
-//   let omdbDataArray = [];
-//   imdbIDList.forEach((element) => {
-//     console.log(imdbIDList.length);
-//     const omdbURL = omdbBaseURL + "i=" + element + "&apikey=" + omdbAPIKey;
-
-//     fetch(omdbURL).then(function (response) {
-//       if (response.ok) {
-//         response.json().then(function (omdbData) {
-//           omdbDataArray.push(omdbData);
-//           if (omdbDataArray.length === imdbIDList.length) {
-//             console.log(omdbDataArray);
-//             displayCards(omdbDataArray);
-//           }
-//         });
-//       } else {
-//         // Fill in later?
-//       }
-//     });
-//   });
-// }
-
 let imdbID;
 const resultCardContainerEl = document.querySelector("#resultCardContainer");
 const genreSelectEl = document.querySelector("#genreSelect");
@@ -233,7 +123,6 @@ function fetchMovies() {
 }
 
 function displayCards(tmdbData) {
-  console.log(tmdbData);
   resultCardContainerEl.innerHTML = "";
   tmdbData.results.forEach((element) => {
     parsedReleaseDate = moment(element.release_date, "YYYY-MM-DD").format(
@@ -241,7 +130,6 @@ function displayCards(tmdbData) {
     );
     // this creates a new card and fills it with the desired information
     const newCard = document.createElement("div");
-
     newCard.innerHTML =
       `<div><a href = "expandedResultCard.html?tmdbID=` +
       element.id +
@@ -260,18 +148,6 @@ function displayCards(tmdbData) {
       `"></img></figure>`;
     newCard.classList.add("favCard");
     resultCardContainerEl.append(newCard);
-    // decides whether or not to add a button to make a calendar event. commented out for now
-    // if (today.isBefore(parsedReleaseDate)) {
-    //   newCard.classList.add("upcomingCard");
-    //   const calendarEvtBtn = document.createElement("button");
-    //   calendarEvtBtn.innerText = "Create a Calendar Event";
-    //   calendarEvtBtn.classList.add("calendarEvtBtn");
-    //   newCard.append(calendarEvtBtn);
-    //   resultCardContainerEl.append(newCard);
-    // } else {
-    //   newCard.classList.add("alreadyReleasedCard");
-    //   resultCardContainerEl.append(newCard);
-    // }
   });
 
   // determines the position of the movies in favorites, and if it's not present in the favorites it leaves the button's innerText as "Add to favorites"
@@ -285,18 +161,13 @@ function displayCards(tmdbData) {
 }
 
 function rmvBtnHandler(target) {
-  const removeBtnEl = document.querySelector(".rmvFavBtn");
-  // determines the current position of the selected movie in the faveList array, or leaves it as null if it's not in the array
   if (target.dataset.state === "0") {
-    console.log("We here");
     target.innerText = "Remove from Favorites";
     target.dataset.state = 1;
     faveList.push(target.dataset.tmdbid);
     localStorage.setItem("favorites", JSON.stringify(faveList));
-  }
-  // decides whether the movie is in faveList and adds or removes it
-  else if (target.dataset.state === "1") {
-    removeBtnEl.innerText = "Add to Favorites";
+  } else if (target.dataset.state === "1") {
+    target.innerText = "Add to Favorites";
     target.dataset.state = 0;
     faveList.splice(faveList.indexOf(target.dataset.tmdbid), 1);
     localStorage.setItem("favorites", JSON.stringify(faveList));
@@ -304,7 +175,7 @@ function rmvBtnHandler(target) {
 }
 
 resultCardContainerEl.addEventListener("click", function (event) {
-  event.stopPropagation;
+  event.stopPropagation();
   const target = event.target;
   //   determines if the target has the rmvFavBtn class and runs the rmvBtnHandler function if so
   if (target.classList.contains("rmvFavBtn")) {
@@ -318,7 +189,19 @@ resultCardContainerEl.addEventListener("click", function (event) {
 // the present variables on this page could reset the localstorage to an earlier state
 
 window.addEventListener("focus", function () {
-  document.location.reload(true);
+  faveList = JSON.parse(localStorage.getItem("favorites")) ?? [];
+  const removeBtnEl = document.querySelectorAll(".rmvFavBtn");
+  removeBtnEl.forEach((element) => {
+    if (faveList.indexOf(element.dataset.tmdbid) !== -1) {
+      console.log("we here 3");
+      element.dataset.state = 1;
+      element.innerText = "Remove from Favorites";
+    } else {
+      console.log("we here 4");
+      element.dataset.state = 0;
+      element.innerHTML = "Add to Favorites";
+    }
+  });
 });
 
 searchBtnEl.addEventListener("click", function () {

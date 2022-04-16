@@ -1,17 +1,50 @@
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-  }
-  
-  :root {
-    --dark: #12100e;
-    --light: #e6fafc;
-    --blue: #4059ad;
-    --orange: #dc965a;
-    --red: #c81d25;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
+:root {
+  --dark: #12100e;
+  --light: #e6fafc;
+  --blue: #4059ad;
+  --orange: #dc965a;
+  --red: #c81d25;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  margin: 38px;
+}
+
+/* #upcomingContainer {
+  display: flex;
+  border: 2px solid;
+} */
+
+.upcomingCard, .alreadyReleasedCard {
+  display: flex;
+  background-color: var(---light);
+}
+
+/* .header1 {
+  background-color: var(--blue);
+  padding: 1%;
+} */
+/* 
+#title {
+  color: var(--light);
+}
+
+#link {
+  color: var(--light);
+}
+
+#links {
+  text-align: right;
+} */
 
 .rmvFavBtn {
   background-color: #4059ad;

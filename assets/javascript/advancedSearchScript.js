@@ -243,19 +243,21 @@ function displayCards(tmdbData) {
     const newCard = document.createElement("div");
 
     newCard.innerHTML =
-      `<h3 class="card-header-title">` +
-      element.title +
-      `</h3><button class="rmvFavBtn" data-state=0 data-tmdbid="` +
+      `<div><a href = "expandedResultCard.html?tmdbID=` +
       element.id +
-      `">Add to Favorites</button><img src="http://image.tmdb.org/t/p/w185` +
-      element.poster_path +
-      `"></img><p>Release Date: ` +
+      `">` +
+      element.title +
+      `  </a><button class="rmvFavBtn" data-state=0 data-tmdbid="` +
+      element.id +
+      `">Add to Favorites</button><p>Release Date: ` +
       parsedReleaseDate +
       `</p><p>Plot: ` +
       element.overview +
       `</p><p>TMDB Rating: ` +
       element.vote_average +
-      `</p>`;
+      `</p></div><figure><img src="http://image.tmdb.org/t/p/w185` +
+      element.poster_path +
+      `"></img></figure>`;
     newCard.classList.add("favCard");
     resultCardContainerEl.append(newCard);
     // decides whether or not to add a button to make a calendar event. commented out for now

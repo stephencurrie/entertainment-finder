@@ -21,11 +21,11 @@ function fetchFaveData() {
       if (response.ok) {
         response.json().then(function (faveData) {
           faveListDataArray.push(faveData);
+          console.log("API Call");
           if (faveList.length === faveListDataArray.length) {
             faveListDataArray.sort((a, b) => {
               return moment(a.release_date) - moment(b.release_date);
             });
-
             populateAllCards();
           }
         });
@@ -144,6 +144,7 @@ window.addEventListener("focus", function () {
   initialize();
 });
 
+initialize();
 // var test1El = document.querySelector("#test1");
 // var test2El = document.querySelector("#test2");
 // var test3El = document.querySelector("#test3");

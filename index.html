@@ -3,44 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Entertainment Finder</title>
     <link rel="stylesheet" href="./assets/css/reset.css" />
-    <script src="https://kit.fontawesome.com/1866c76c2a.js" crossorigin="anonymous"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
-    />
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"/>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css">
+    <link rel="stylesheet" href="./assets/css/style.css"/>
+    <title>Entertainment Finder</title>
   </head>
-
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Entertainment Finder</title>
-  <link rel="stylesheet" href="./assets/css/reset.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-  <link rel="stylesheet" href="https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css">
-  <link rel="stylesheet" href="./assets/css/style.css" />
-</head>
 
   <body>
     <header>
-
-
-
       <!-- Navbar uses Bulma framework.  NEED TO SET COLORS AS VARIABLES AND LINK TO CSS.  NEED TO GET HAMBURGER MENU WORKING-->
       <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-        <i class="fa-solid fa-video fa-2x ml-2 my-2"></i><a class="navbar-item ml-1" href="https://stephencurrie.github.io/entertainment-finder/">       
-          Movie Finder</a>
-    
-        <a role="button" class="navbar-burger" id="burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
+        <div class="navbar-brand">
+          <i class="fa-solid fa-video fa-2x ml-2 my-2"></i><a class="navbar-item ml-1" href="https://stephencurrie.github.io/entertainment-finder/">       
+            Movie Finder</a>
+      
+          <a role="button" class="navbar-burger" id="burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
 
         <div id="nav-links" class="navbar-menu">
           <div class="navbar-end">
@@ -48,8 +31,6 @@
             <a class="navbar-item" href="advancedSearch.html"> Advanced Search</a>
             <a class="navbar-item" href="faveFeed.html"> Favorites</a>
             <a class="navbar-item"> Team</a>
-
-            </div>
           </div>
         </div>
       </nav>
@@ -72,80 +53,78 @@
     <div class="columns">
       <div class="column is-three-quarters has-background-info">
         <div class="column is-ml-1">
-        <h3 class="title is-3">Search for Upcoming Movies by your favorite genre!</h3>
+          <h3 class="title is-3">Search for Upcoming Movies by your favorite genre!</h3>
         
-        <div class="field is-grouped">
-          <div class="control">
-            <div class="select">
-              <select class="input is-medium" id="genreid" type="submit">
-                <option>Select Genre</option>
-                <option value="28">Action</option>
-                <option value="12">Adventure</option>
-                <option value="16">Animation</option>
-                <option value="35">Comedy</option>
-                <option value="80">Crime</option>
-                <option value="99">Documentary</option>
-                <option value="18">Drama</option>
-                <option value="10751">Family</option>
-                <option value="14">Fantasy</option>
-                <option value="36">History</option>
-                <option value="27">Horror</option>
-                <option value="10402">Music</option>
-                <option value="9648">Mystery</option>
-                <option value="10749">Romance</option>
-                <option value="878">Science Fiction</option>
-                <option value="53">Thriller</option>
-                <option value="10752">War</option>
-                <option value="37">Western</option>
-              </select>
+          <div class="columns field is-vertical">
+            <!-- Genre select element-->
+            <div class="control column">
+                <select class="control select input is-medium" id="genreid" type="submit">
+                  <option>Select Genre</option>
+                  <option value="28">Action</option>
+                  <option value="12">Adventure</option>
+                  <option value="16">Animation</option>
+                  <option value="35">Comedy</option>
+                  <option value="80">Crime</option>
+                  <option value="99">Documentary</option>
+                  <option value="18">Drama</option>
+                  <option value="10751">Family</option>
+                  <option value="14">Fantasy</option>
+                  <option value="36">History</option>
+                  <option value="27">Horror</option>
+                  <option value="10402">Music</option>
+                  <option value="9648">Mystery</option>
+                  <option value="10749">Romance</option>
+                  <option value="878">Science Fiction</option>
+                  <option value="53">Thriller</option>
+                  <option value="10752">War</option>
+                  <option value="37">Western</option>
+                </select>
             </div>
-          </div>
 
-          <div class="control">
-            <div class="select">
-              <select class="input is-medium" id="timeframeid" type="submit">
-                <option>Select Time Frame</option>
-                <option value="30">30 Days</option>
-                <option value="60">60 days</option>
-                <option value="90">90 days</option>
-              </select>
+            <!-- Time frame select element -->
+            <div class="control column">
+                <select class="select input is-medium" id="timeframeid" type="submit">
+                  <option>Select Time Frame</option>
+                  <option value="30">30 Days</option>
+                  <option value="60">60 days</option>
+                  <option value="90">90 days</option>
+                </select>
             </div>
-          </div>
 
-          <!-- <div class="field"> -->
-            <div class="field control">
-              <button class="button is-primary is-medium" id="searchSubmitBtn">Submit</button>
+            
+            <div class="control column">
+                <button class="button is-primary is-medium" id="searchSubmitBtn">Submit</button>
             </div>
+
           </div>
-         <!-- </div> -->
-       
-         <!-- THE SEARCH RESULTS GO IN A TILE -->
-         <div class="tile is-ancestor" >
-          <div class="tile is-vertical is-12" >
-                <div class="tile is-parent is-vertical" id="result-container">
+          
+        
+         <!-- Result container -->
+          <div class="tile is-ancestor" >
+            <div class="tile is-vertical is-12" >
+              <div class="tile is-parent is-vertical" id="result-container">
               </div>
+            </div>
           </div>
-        </div>
 
         </div>
       </div>
       
       
-      <!-- THIS IS THE RIGHT COLUMN -->
+     <!-- Popular movies container -->
       <div class="column">
         <h3 class="title is-3">Now Playing</h3>
-      <div id="popularMovieContainer">
-        <div class="pop-movie-cards"></div>
+        <div id="popularMovieContainer">
       </div>
     
     
     </div>
 
     <footer></footer>
-    <script
-    type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js">
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js">
     </script>
+    <script src="https://kit.fontawesome.com/1866c76c2a.js" crossorigin="anonymous"></script>
     <script src="./assets/javascript/script.js"></script>
 
   </body>

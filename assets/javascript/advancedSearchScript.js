@@ -5,6 +5,7 @@ const searchBtnEl = document.querySelector("#searchBtn");
 const yearInputEl = document.querySelector("#yearInput");
 const ratingInputEl = document.querySelector("#ratingInput");
 const peopleInputEl = document.querySelector("#peopleInput");
+const sortingInputEl=document.querySelector('#sortSelect')
 var burgerIcon = document.querySelector("#burger");
 var navbarMenu = document.querySelector("#nav-links");
 const runtimeInputMinEl = document.querySelector("#runtimeInputMin");
@@ -113,12 +114,14 @@ function determineParameters() {
 }
 
 function fetchMovies() {
+  const sortingParam='&sort_by='+sortingInputEl.value
+  
   let tmdbURL =
     tmdbBaseURL +
     "discover/movie?api_key=" +
     tmdbApiKey +
-    // need to change this later to account for user-selected sorting
-    "&sort_by=popularity.desc&include_adult=false" +
+    sortingParam+
+    "&include_adult=false" +
     searchParamsString +
     selectedGenreParam +
     peopleParam;

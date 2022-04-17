@@ -2,10 +2,19 @@ var submitButton = document.getElementById("searchSubmitBtn");
 var resultContainer = document.getElementById("result-container");
 var genreSelected = document.getElementById("genreid");
 var timeFrameSelected = document.getElementById("timeframeid");
+var burgerIcon = document.querySelector("#burger");
+var navbarMenu = document.querySelector("#nav-links");
 var todayDate = moment().format("YYYY-MM-DD");
 var baseUrl = "https://api.themoviedb.org";
 var apiKey = "19a1fd696d217cbc89d9176a5b94e4e6";
 let faveList = JSON.parse(localStorage.getItem("favorites")) ?? [];
+
+// Creates Hamburger Menu
+burgerIcon.addEventListener('click', () => {
+
+  navbarMenu.classList.toggle('is-active');
+});
+
 
 var getMovieData = function (e) {
   e.preventDefault();

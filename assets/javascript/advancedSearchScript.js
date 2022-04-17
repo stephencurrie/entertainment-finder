@@ -5,11 +5,23 @@ const searchBtnEl = document.querySelector("#searchBtn");
 const yearInputEl = document.querySelector("#yearInput");
 const ratingInputEl = document.querySelector("#ratingInput");
 const peopleInputEl = document.querySelector("#peopleInput");
+var burgerIcon = document.querySelector("#burger");
+var navbarMenu = document.querySelector("#nav-links");
 const runtimeInputMinEl = document.querySelector("#runtimeInputMin");
 const runtimeInputMaxEl = document.querySelector("#runtimeInputMax");
 const searchParamSelectorsEls = document.querySelectorAll(
   ".searchParamSelectors"
 );
+
+// Creates Hamburger Menu
+burgerIcon.addEventListener('click', () => {
+
+  navbarMenu.classList.toggle('is-active');
+});
+
+
+
+
 const tmdbBaseURL = "https://api.themoviedb.org/3/";
 const tmdbApiKey = "1288fee4b00de870e735f788ed6723bc";
 // const omdbBaseURL = " http://www.omdbapi.com/?";

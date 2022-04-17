@@ -1,3 +1,6 @@
+var burgerIcon = document.querySelector("#burger");
+var navbarMenu = document.querySelector("#nav-links");
+
 const upcomingCardContainerEl = document.querySelector(
   "#upcomingCardContainer"
 );
@@ -7,6 +10,16 @@ const alreadyReleasedCardContainerEl = document.querySelector(
 const mainEl = document.querySelector("main");
 const tmdbBaseURL = "https://api.themoviedb.org/3/movie/";
 const tmdbApiKey = "1288fee4b00de870e735f788ed6723bc";
+
+
+// Creates Hamburger Menu
+burgerIcon.addEventListener('click', () => {
+
+  navbarMenu.classList.toggle('is-active');
+});
+
+
+
 
 // This pulls the favorites list from local storage, or if no favelist exists yet it sets it to an empty array
 let faveList = JSON.parse(localStorage.getItem("favorites")) ?? [];

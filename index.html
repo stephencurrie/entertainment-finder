@@ -32,8 +32,8 @@
       <!-- Navbar uses Bulma framework.  NEED TO SET COLORS AS VARIABLES AND LINK TO CSS.  NEED TO GET HAMBURGER MENU WORKING-->
       <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <a class="navbar-item" href="https://stephencurrie.github.io/entertainment-finder/">Movie Finder
-        </a>
+        <i class="fa-solid fa-video fa-2x ml-2 my-2"></i><a class="navbar-item ml-1" href="https://stephencurrie.github.io/entertainment-finder/">       
+          Movie Finder</a>
     
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
           <span aria-hidden="true"></span>
@@ -45,7 +45,7 @@
         <div id="navbarBasicExample" class="navbar-menu">
           <div class="navbar-end">
             <a class="navbar-item" href="index.html"> Home</a>
-            <a class="navbar-item" href="searchResults.html"> Advanced Search</a>
+            <a class="navbar-item" href="advancedSearch.html"> Advanced Search</a>
             <a class="navbar-item" href="faveFeed.html"> Favorites</a>
             <a class="navbar-item"> Team</a>
 
@@ -71,14 +71,14 @@
     <!-- MAIN SECTION HAS TWO COLUMNS.  THE LEFT IS 3/4 WIDTH AND HAS THE SEARCH BOX. THE RIGHT IS 1/4 WIDTH AND HAS THE POPULAR MOVIES.  MAY NEED TO PLAY AROUND WITH THIS IF IT LOOKS WEIRD -->
     <div class="columns">
       <div class="column is-three-quarters has-background-info">
-        <div class="column is-offset-1">
+        <div class="column is-ml-1">
         <h3 class="title is-3">Search for Upcoming Movies by your favorite genre!</h3>
         
         <div class="field is-grouped">
           <div class="control">
             <div class="select">
               <select class="input is-medium" id="genreid" type="submit">
-                <option>Select movie genre</option>
+                <option>Select Genre</option>
                 <option value="28">Action</option>
                 <option value="12">Adventure</option>
                 <option value="16">Animation</option>
@@ -123,15 +123,6 @@
          <div class="tile is-ancestor" >
           <div class="tile is-vertical is-12" >
                 <div class="tile is-parent is-vertical" id="result-container">
-
-                  <!-- <article class="tile is-child notification is-warning">
-                    <img src="https://image.tmdb.org/t/p/original//Qj1h6DoyS6PbKYmdYD8J8YpyF2.jpg">
-                    <a>John Wynn's One Hour</a>
-                    <p>Release Date:2022-04-22</p>
-                  </article> -->
-
-
-
               </div>
           </div>
         </div>
@@ -142,7 +133,7 @@
       
       <!-- THIS IS THE RIGHT COLUMN -->
       <div class="column">
-      <h1>Now Playing</h1>
+        <h3 class="title is-3">Now Playing</h3>
       <div id="popularMovieContainer">
         <div class="pop-movie-cards"></div>
       </div>

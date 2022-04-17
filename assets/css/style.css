@@ -54,3 +54,7 @@ h1 {
 .resultCard div {
   padding: 4% 0
 }
+
+.columns {
+  margin: 0;
+}

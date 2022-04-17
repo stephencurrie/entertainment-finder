@@ -34,7 +34,6 @@ function fetchFaveData() {
       if (response.ok) {
         response.json().then(function (faveData) {
           faveListDataArray.push(faveData);
-          console.log("API Call");
           if (faveList.length === faveListDataArray.length) {
             faveListDataArray.sort((a, b) => {
               return moment(a.release_date) - moment(b.release_date);
@@ -62,10 +61,12 @@ function populateAllCards() {
   // iterates through all movie IDs in the faveList array and does an API call using those movie IDs in the URL,
   // then uses the displayCard function to build and append the cards
   faveListDataArray.forEach((element) => {
+    console.log(element.release_date);
     const parsedReleaseDate = moment(
       element.release_date,
-      "DD MMM YYYY"
+      "YYYY-MM-DD"
     ).format("MM/DD/YYYY");
+    console.log(parsedReleaseDate)
     let releaseDateDisplayString = "";
     if (today.isBefore(parsedReleaseDate)) {
       releaseDateDisplayString =
@@ -110,10 +111,10 @@ function populateAllCards() {
 
     if (today.isBefore(parsedReleaseDate)) {
       newCard.classList.add("upcomingCard");
-      const calendarEvtBtn = document.createElement("button");
-      calendarEvtBtn.innerText = "Create a Calendar Event";
-      calendarEvtBtn.classList.add("calendarEvtBtn");
-      newCard.append(calendarEvtBtn);
+      // const calendarEvtBtn = document.createElement("button");
+      // calendarEvtBtn.innerText = "Create a Calendar Event";
+      // calendarEvtBtn.classList.add("calendarEvtBtn");
+      // newCard.append(calendarEvtBtn);
       upcomingCardContainerEl.append(newCard);
     } else {
       newCard.classList.add("alreadyReleasedCard");

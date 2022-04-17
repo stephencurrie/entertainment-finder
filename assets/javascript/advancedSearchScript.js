@@ -148,7 +148,7 @@ function displayCards(tmdbData) {
     newCard.innerHTML =
       `<div><a href = "expandedResultCard.html?tmdbID=` +
       element.id +
-      `">` +
+      `" target="_blank" rel="noopener noreferrer">` +
       element.title +
       `  </a><button class="rmvFavBtn" data-state=0 data-tmdbid="` +
       element.id +

@@ -84,7 +84,7 @@ function populateAllCards() {
       // Movie Info
       `<div><a class="title is-large" href = "expandedResultCard.html?tmdbID=` +
       element.id +
-      `">` +
+      `" target="_blank" rel="noopener noreferrer">` +
       element.title +
       `</a>
       <p>Release Date: ` +

@@ -52,7 +52,7 @@ var getMovieData = function (e) {
               posterUrl +
               '"/><div><a href = "expandedResultCard.html?tmdbID=' +
               resultTMDBId +
-              '">' +
+              '" target="_blank" rel="noopener noreferrer">' +
               data.results[i].original_title +
               "</a><p>Release Date:" +
               data.results[i].release_date +
@@ -137,7 +137,7 @@ var displayPopularMovies = function (popular) {
     popularEl.innerHTML =
       '<a href="expandedResultCard.html?tmdbID=' +
       popularTMDBId +
-      '"><img src="' +
+      '" target="_blank" rel="noopener noreferrer"><img src="' +
       posterUrl +
       '"/></a>';
     popularEl.classList = "";

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"/>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css">
+    <link rel="stylesheet" href="./assets/css/style.css"/>
+  </head>
+
+  <body>
+    <header>
+      <!-- Navbar uses Bulma framework.  NEED TO SET COLORS AS VARIABLES AND LINK TO CSS.  NEED TO GET HAMBURGER MENU WORKING-->
+      <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <i class="fa-solid fa-video fa-2x ml-2 my-2"></i><a class="navbar-item ml-1" href="https://stephencurrie.github.io/entertainment-finder/">       
+            Movie Finder</a>
+      
+          <a role="button" class="navbar-burger" id="burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div id="nav-links" class="navbar-menu">
+          <div class="navbar-end">
+            <a class="navbar-item" href="index.html"> Home</a>
+            <a class="navbar-item" href="advancedSearch.html"> Advanced Search</a>
+            <a class="navbar-item" href="faveFeed.html"> Favorites</a>
+            <a class="navbar-item"> Team</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- I WAS THINKING OF USING THE HERO TO CALL OUT THE FUNCTIONALITY OF THE SITE.  OPEN TO SUGGESTIONS HERE.  MAYBE A BACKGROUND IMAGE? COLOR NEEDS TO BE SET AS A VARIABLE AND LINKED TO CSS-->
+
+    <section class="hero is-primary">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <p class="title">
+            Search! Save! Plan! Research! 
+          </p>
+        </div>  
+      </div>  
+    </section>
+<br>
+    <!-- About this application -->
+    <section class="hero is-small is-primary">
+        <div class="hero-body has-background-info">
+          <div class="container has-text-centered ">
+            <p class="title">
+              About
+            </p>
+          </div>  
+        </div>  
+      </section>
+
+    <section class="section  has-text-centered">
+        <h2 class="subtitle">
+            Entertainment Finder is a movie searching application built with The Movie Database API.
+        </h2>
+        <h2 class="subtitle">
+            You can <strong>SEARCH</strong> movies by genres or by many more criteria.
+        </h2>
+        <h2 class="subtitle">
+            You can <strong>VIEW</strong> the release date, rating, plot, and more of the searched movies.
+        </h2> 
+        <h2 class="subtitle">
+            You can <strong>SAVE</strong> the movies you like and create your own favorite watchlist.
+        </h2>
+      </section>
+
+    <!-- List of our team in alphabetical order -->
+      <section class="hero is-small is-primary">
+        <div class="hero-body has-background-info">
+          <div class="container has-text-centered ">
+            <p class="title">
+              Our Team
+            </p>
+          </div>  
+        </div>  
+      </section>
+    <section class="section  has-text-centered">
+        <h2 class="subtitle">
+         Harris Al
+        </h2>
+        <h2 class="subtitle">
+        Adam Brock
+        </h2>
+        <h2 class="subtitle">
+        Ron Crawford
+        </h2>
+        <h2 class="subtitle">
+        Stephen Currie
+        </h2> 
+        <h2 class="subtitle">
+        Da Eun Kim
+        </h2>
+      </section>
+
+    <footer></footer>
+    <script src="https://kit.fontawesome.com/1866c76c2a.js" crossorigin="anonymous"></script>
+    <script src="./assets/javascript/about.js"></script>
+  </body>

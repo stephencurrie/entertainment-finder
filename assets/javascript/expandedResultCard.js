@@ -92,7 +92,9 @@ function createCard(movieData) {
     movieData.Awards +
     `</p>` +
     ratingsHTML +
-    `</p></div><section><img class="" src="` +
+    `</p></div><section><img alt = "` +
+    movieData.Title +
+    ` Poster" src="` +
     movieData.Poster +
     `"></img></section>`;
   newCard.classList.add("favCard");
@@ -114,15 +116,14 @@ function rmvBtnHandler(target) {
     target.dataset.state = 1;
     faveList.push(target.dataset.tmdbid);
     localStorage.setItem("favorites", JSON.stringify(faveList));
-  }
-  else if (target.dataset.state === "1") {
+  } else if (target.dataset.state === "1") {
     target.innerText = "Add to Favorites";
     target.dataset.state = 0;
     faveList.splice(faveList.indexOf(target.dataset.tmdbid), 1);
     localStorage.setItem("favorites", JSON.stringify(faveList));
   }
 }
-  //   using event delegation, determines if the target has the rmvFavBtn class and runs the rmvBtnHandler function if so
+//   using event delegation, determines if the target has the rmvFavBtn class and runs the rmvBtnHandler function if so
 mainCardEl.addEventListener("click", function (event) {
   event.stopPropagation();
   const target = event.target;

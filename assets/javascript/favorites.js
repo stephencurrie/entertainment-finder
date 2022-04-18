@@ -84,7 +84,9 @@ function populateAllCards() {
       `">Remove</button></div>` +
       // Poster
       // find the row class in the framework and use it for these two
-      `<section class="imgClass"> <img class="" src="https://image.tmdb.org/t/p/w185` +
+      `<section class="imgClass"> <img alt = "` +
+      element.title +
+      ` Poster" src="https://image.tmdb.org/t/p/w185` +
       element.poster_path +
       `"></img></section>`;
     newCard.classList.add("favCard");
@@ -130,7 +132,7 @@ mainEl.addEventListener("click", function (event) {
   }
 });
 
-// this eventListener will rerun the initializing functions when the user navigates back to it; 
+// this eventListener will rerun the initializing functions when the user navigates back to it;
 // this accounts for the user adding more favorites and coming back to this page.
 window.addEventListener("focus", function () {
   faveList = JSON.parse(localStorage.getItem("favorites")) ?? [];

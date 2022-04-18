@@ -135,7 +135,9 @@ function displayCards(tmdbData) {
       element.overview +
       `</p><p>TMDB Rating: ` +
       element.vote_average +
-      `</p></div><figure><img src="https://image.tmdb.org/t/p/w185` +
+      `</p></div><figure><img alt = "` +
+      element.title +
+      ` Poster" src="https://image.tmdb.org/t/p/w185` +
       element.poster_path +
       `"></img></figure>`;
     newCard.classList.add("favCard");

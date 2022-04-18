@@ -44,7 +44,7 @@ var getMovieData = function (e) {
             resultEl.innerHTML =
               '<img src="' +
               posterUrl +
-              '"/><div><a href = "expandedResultCard.html?tmdbID=' +
+              '"/><section><a href = "expandedResultCard.html?tmdbID=' +
               resultTMDBId +
               '" target="_blank" rel="noopener noreferrer">' +
               data.results[i].original_title +
@@ -52,7 +52,7 @@ var getMovieData = function (e) {
               data.results[i].release_date +
               '</p><button class="rmvFavBtn" data-state=0 data-tmdbid="' +
               data.results[i].id +
-              '">Add to Favorites</button></div>';
+              '">Add to Favorites</button></section>';
             resultEl.classList =
               "tile is-child notification is-warning resultCard";
             resultContainer.appendChild(resultEl);
@@ -123,7 +123,7 @@ var displayPopularMovies = function (popular) {
     var popularTMDBId = popular[i].id;
     var posterPath = popular[i].poster_path;
     var posterUrl = "https://image.tmdb.org/t/p/original/" + posterPath;
-    var popularEl = document.createElement("div");
+    var popularEl = document.createElement("figure");
     popularEl.innerHTML =
       '<a href="expandedResultCard.html?tmdbID=' +
       popularTMDBId +

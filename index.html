@@ -34,7 +34,7 @@
             class="navbar-item ml-1"
             href="https://stephencurrie.github.io/entertainment-finder/"
           >
-            Movie Finder</a
+            <h1 class = "is-size-5 has-text-white">Movie Finder</h1></a
           >
 
           <a
@@ -77,11 +77,11 @@
     <!-- Main section has two columns.  The left is 3/4 width and has the search box.  The right is 1/4 width and has the popular movies -->
 
     <div class="columns">
-      <div class="column is-three-quarters has-background-info">
+      <main class="column is-three-quarters has-background-info">
         <div class="column is-ml-1">
-          <h3 class="title is-3">
+          <h2 class="title is-3">
             Search for Upcoming Movies by your favorite genre!
-          </h3>
+          </h2>
 
           <div class="columns field is-vertical">
             <!-- Genre select element-->
@@ -144,16 +144,14 @@
             </div>
           </div>
         </div>
-      </div>
+      </main>
 
       <!-- Popular movies container -->
-      <div class="column">
-        <h3 class="title is-3">Now Playing</h3>
+      <aside class="column">
+        <h2 class="title is-3">Now Playing</h2>
         <div id="popularMovieContainer"></div>
-      </div>
+      </aside>
     </div>
-    <footer></footer>
-
     <script
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"

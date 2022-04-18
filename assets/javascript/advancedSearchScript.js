@@ -33,7 +33,7 @@ function initGenreSelectCreation() {
         });
       });
     } else {
-      resultCardContainerEl.innerHTML = "<h3>Error loading resource.</h3>";
+      resultCardContainerEl.innerHTML = "<h4>Error loading resource.</h4>";
     }
   });
 }
@@ -108,7 +108,7 @@ function fetchMovies() {
         displayCards(tmdbData);
       });
     } else {
-      resultCardContainerEl.innerHTML = "<h3>Error loading resource.</h3>";
+      resultCardContainerEl.innerHTML = "<h4>Error loading resource.</h4>";
     }
   });
 }
@@ -121,9 +121,9 @@ function displayCards(tmdbData) {
       "MM/DD/YYYY"
     );
     // this creates a new card and fills it with the desired information
-    const newCard = document.createElement("div");
+    const newCard = document.createElement("section");
     newCard.innerHTML =
-      `<div><a href = "expandedResultCard.html?tmdbID=` +
+      `<section><a href = "expandedResultCard.html?tmdbID=` +
       element.id +
       `" target="_blank" rel="noopener noreferrer">` +
       element.title +
@@ -135,7 +135,7 @@ function displayCards(tmdbData) {
       element.overview +
       `</p><p>TMDB Rating: ` +
       element.vote_average +
-      `</p></div><figure><img src="https://image.tmdb.org/t/p/w185` +
+      `</p></section><figure><img src="https://image.tmdb.org/t/p/w185` +
       element.poster_path +
       `"></img></figure>`;
     newCard.classList.add("favCard");

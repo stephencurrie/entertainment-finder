@@ -1,41 +1,21 @@
-let imdbID;
 const resultCardContainerEl = document.querySelector("#resultCardContainer");
 const genreSelectEl = document.querySelector("#genreSelect");
 const searchBtnEl = document.querySelector("#searchBtn");
-const yearInputEl = document.querySelector("#yearInput");
-const ratingInputEl = document.querySelector("#ratingInput");
 const peopleInputEl = document.querySelector("#peopleInput");
-const sortingInputEl=document.querySelector('#sortSelect')
-var burgerIcon = document.querySelector("#burger");
-var navbarMenu = document.querySelector("#nav-links");
-const runtimeInputMinEl = document.querySelector("#runtimeInputMin");
-const runtimeInputMaxEl = document.querySelector("#runtimeInputMax");
+const sortingInputEl = document.querySelector("#sortSelect");
 const searchParamSelectorsEls = document.querySelectorAll(
   ".searchParamSelectors"
 );
-
-// Creates Hamburger Menu
-burgerIcon.addEventListener('click', () => {
-
-  navbarMenu.classList.toggle('is-active');
-});
-
-
-
-
 const tmdbBaseURL = "https://api.themoviedb.org/3/";
 const tmdbApiKey = "1288fee4b00de870e735f788ed6723bc";
-// const omdbBaseURL = " http://www.omdbapi.com/?";
-// const omdbAPIKey = "cf7767a2";
 let genreListArray = [];
 let searchParamsString = "";
 let selectedGenreParam = "";
 let peopleParam = "";
-var imdbIDList = [];
-const today = moment();
-let parsedReleaseDate;
-
 let faveList = JSON.parse(localStorage.getItem("favorites")) ?? [];
+var burgerIcon = document.querySelector("#burger");
+var navbarMenu = document.querySelector("#nav-links");
+
 // Calls the tmdb API to generate a list of genres the user can select
 function initGenreSelectCreation() {
   fetch(tmdbBaseURL + "genre/movie/list?api_key=" + tmdbApiKey).then(function (
@@ -53,27 +33,25 @@ function initGenreSelectCreation() {
         });
       });
     } else {
-      //   if we use this in the final code we'll need to change this, as the ACs say we can't use alerts
-      alert("Connection Error while generating genres");
+      resultCardContainerEl.innerHTML = "<h3>Error loading resource.</h3>";
     }
   });
 }
 
-// goes through all inputs and selects to generate query strings for our main API call that will return the user's search results
+// goes through all inputs and selects to create query strings that will eventually get concatenated into a URL for our API call
 function determineParameters() {
   // resets all necessary strings
   searchParamsString = "";
   selectedGenreParam = "";
   peopleParam = "";
   let searchParamsArray = [];
-  // this forEach decides if each input (aside from actor) has a value entered, then creates a combined query string for all of them
+  // this forEach decides if each input (aside from actor) has a value entered, then a combined query string is created from that
   searchParamSelectorsEls.forEach((element) => {
     if (element.value !== "") {
       const newArrayValue = [element.dataset.parameter, element.value];
       searchParamsArray.push(newArrayValue);
     }
   });
-
   searchParamsString = "&" + new URLSearchParams(searchParamsArray).toString();
   // decides if a genre is selected, then creates a parameter for it
   if (genreSelectEl.value !== "") {
@@ -104,8 +82,6 @@ function determineParameters() {
           peopleParam = "&with_people=" + actorIDData.results[0].id;
           fetchMovies();
         });
-      } else {
-        // Fill in later?
       }
     });
   } else {
@@ -113,14 +89,14 @@ function determineParameters() {
   }
 }
 
+// this function concatenates the base URL, api key, and our search params into one URL, which we then call to get our array of movie info
 function fetchMovies() {
-  const sortingParam='&sort_by='+sortingInputEl.value
-  
-  let tmdbURL =
+  const sortingParam = "&sort_by=" + sortingInputEl.value;
+  const tmdbURL =
     tmdbBaseURL +
     "discover/movie?api_key=" +
     tmdbApiKey +
-    sortingParam+
+    sortingParam +
     "&include_adult=false" +
     searchParamsString +
     selectedGenreParam +
@@ -132,15 +108,16 @@ function fetchMovies() {
         displayCards(tmdbData);
       });
     } else {
-      // Fill in later?
+      resultCardContainerEl.innerHTML = "<h3>Error loading resource.</h3>";
     }
   });
 }
 
+// the information from the API call is passed into this function to create cards for each one
 function displayCards(tmdbData) {
   resultCardContainerEl.innerHTML = "";
   tmdbData.results.forEach((element) => {
-    parsedReleaseDate = moment(element.release_date, "YYYY-MM-DD").format(
+    const parsedReleaseDate = moment(element.release_date, "YYYY-MM-DD").format(
       "MM/DD/YYYY"
     );
     // this creates a new card and fills it with the desired information
@@ -165,7 +142,7 @@ function displayCards(tmdbData) {
     resultCardContainerEl.append(newCard);
   });
 
-  // determines the position of the movies in favorites, and if it's not present in the favorites it leaves the button's innerText as "Add to favorites"
+  // determines whether the TMDB ID is in favorites, and if it's not present in the favorites it leaves the button's innerText as "Add to favorites"
   const removeBtnEl = document.querySelectorAll(".rmvFavBtn");
   removeBtnEl.forEach((element) => {
     if (faveList.indexOf(element.dataset.tmdbid) !== -1) {
@@ -175,6 +152,7 @@ function displayCards(tmdbData) {
   });
 }
 
+// decides what state the remove from favorites button is and toggles it, removing or adding the TMDB ID of the movie to favorites in the process
 function rmvBtnHandler(target) {
   if (target.dataset.state === "0") {
     target.innerText = "Remove from Favorites";
@@ -189,6 +167,7 @@ function rmvBtnHandler(target) {
   }
 }
 
+// uses event delegation to add an eventlistener to the dynamically produced buttons
 resultCardContainerEl.addEventListener("click", function (event) {
   event.stopPropagation();
   const target = event.target;
@@ -196,10 +175,9 @@ resultCardContainerEl.addEventListener("click", function (event) {
   if (target.classList.contains("rmvFavBtn")) {
     rmvBtnHandler(target);
   }
-  //   need to add an if function into this listener that references the "create calendar event" classes
 });
 
-// this eventListener will reload the page when the user navigates back to it; this accounts for the user adding the movie as a favorite and then
+// this eventListener will reload local storage when the user navigates back to it; this accounts for the user adding the movie as a favorite and then
 // tabbing back to this page. If it's not reloaded after adding favorites from the search page
 // the present variables on this page could reset the localstorage to an earlier state
 
@@ -208,11 +186,9 @@ window.addEventListener("focus", function () {
   const removeBtnEl = document.querySelectorAll(".rmvFavBtn");
   removeBtnEl.forEach((element) => {
     if (faveList.indexOf(element.dataset.tmdbid) !== -1) {
-      console.log("we here 3");
       element.dataset.state = 1;
       element.innerText = "Remove from Favorites";
     } else {
-      console.log("we here 4");
       element.dataset.state = 0;
       element.innerHTML = "Add to Favorites";
     }
@@ -221,6 +197,11 @@ window.addEventListener("focus", function () {
 
 searchBtnEl.addEventListener("click", function () {
   determineParameters();
+});
+
+// Creates Hamburger Menu
+burgerIcon.addEventListener("click", () => {
+  navbarMenu.classList.toggle("is-active");
 });
 
 initGenreSelectCreation();

@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Search Results</title>
+    <title>Advanced Search</title>
+    <link rel="stylesheet" href="./assets/css/reset.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
-    <link rel="stylesheet" href="./assets/css/reset.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
@@ -21,167 +21,170 @@
   </head>
   <body>
     <header>
+      <nav
+        class="navbar is-dark"
+        role="navigation"
+        aria-label="main navigation"
+      >
+        <div class="navbar-brand">
+          <i class="fa-solid fa-video fa-2x ml-2 my-2"></i
+          ><a
+            class="navbar-item ml-1"
+            href="https://stephencurrie.github.io/entertainment-finder/"
+          >
+            Movie Finder</a
+          >
 
-
-
-      <!-- Navbar uses Bulma framework.  NEED TO SET COLORS AS VARIABLES AND LINK TO CSS.  NEED TO GET HAMBURGER MENU WORKING-->
-      <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-        <i class="fa-solid fa-video fa-2x ml-2 my-2"></i><a class="navbar-item ml-1" href="https://stephencurrie.github.io/entertainment-finder/">       
-          Movie Finder</a>
-    
-        <a role="button" class="navbar-burger" id="burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
+          <a
+            role="button"
+            class="navbar-burger"
+            id="burger"
+            aria-label="menu"
+            aria-expanded="false"
+            data-target="navbarBasicExample"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
 
         <div id="nav-links" class="navbar-menu">
           <div class="navbar-end">
             <a class="navbar-item" href="index.html"> Home</a>
-            <a class="navbar-item" href="advancedSearch.html"> Advanced Search</a>
-            <a class="navbar-item" href="faveFeed.html"> Favorites</a>
-            <a class="navbar-item"> Team</a>
-
-            </div>
+            <a class="navbar-item" href="advancedSearch.html">
+              Advanced Search</a
+            >
+            <a class="navbar-item" href="favorites.html"> Favorites</a>
+            <a class="navbar-item" href="about.html"> Team</a>
           </div>
         </div>
       </nav>
     </header>
 
+    <section class="hero is-primary">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <p class="title">Search! Save! Plan! Research!</p>
+        </div>
+      </div>
+    </section>
 
-      <section class="hero is-primary">
-        <div class="hero-body">
-          <div class="container has-text-centered">
-            <p class="title">
-              Search! Save! Plan! Research! 
-            </p>
-          </div>  
-        </div>  
-      </section>
+    <main>
+      <div class="columns p-3">
+        <div class="column is-12 has-background-info">
+          <h4 class="title is-4">All Fields are Optional</h4>
 
-
-
-    <body>
-
-        <div class="columns p-3">
-            <div class="column is-12 has-background-info">
-   
-                <h4 class="title is-4">All Fields are Optional</h4>
-   
-
-            <div class="columns is-multiline is-mobile">
-
-                <!-- First row of three columns -->
-                <div class="field column is-one-third">
-                
-                    <div class="control">
-                        <input
-                        id="yearInput"
-                        data-parameter="primary_release_year"
-                        class="searchParamSelectors input"
-                        placeholder="Search by release Year..."
-                      />
-                    </div>
-                </div>
-
-                <div class="field column is-one-third">
-                    <div class="control">
-                        <input
-                        data-parameter="vote_average.gte"
-                        id="ratingInput"
-                        class="searchParamSelectors input"
-                        placeholder="Search by minimum rating..."
-                      />
-                    </div>
-                </div>
-                
-                <div class="field column is-one-third">
-                    <div class="control">
-                        <input
-                        data-parameter="vote_average.lte"
-                        id="ratingInput"
-                        class="searchParamSelectors input"
-                        placeholder="Search by maximum rating..."
-                      />
-                    </div>
-                </div>
-
-                <!-- Second row of three columns -->
-                <div class="field column is-one-third">
-                    <div class="control">
-                        <input
-                        data-parameter="with_people"
-                        id="peopleInput"
-                        class="searchParamSelectors input"
-                        placeholder="Search by actor/director/crew..."
-                      />
-                    </div>
-                </div>
-   
-                <div class="field column is-one-third">
-                    <div class="control">
-                        <input
-                        data-parameter="with_runtime.gte"
-                        id="runtimeInputMin"
-                        class="searchParamSelectors input"
-                        placeholder="Search by minimum runtime..."
-                      />
-                    </div>
-                </div>
-
-                <div class="field column is-one-third">
-                    <div class="control">
-                        <input
-                        data-parameter="with_runtime.lte"
-                        id="runtimeInputMax"
-                        class="searchParamSelectors input"
-                        placeholder="Search by maximum runtime..."
-                      />
-                    </div>
-                </div>
-                
-                <!-- Third row of three columns -->
-
-                <div class="field column is-one-third">
-                  <h5 class="title is-5">Select a genre:</h5>
-                  <div class="select">
-                  <select id="genreSelect">
-                    <option>Genre</option>
-                  </select>
-                  </div>
-                </div>
-                
-                <div class="field column is-one-third">
-                  <h5 class="title is-5">Sort by...</h5>
-                  <div class="select">
-                  <select id="sortSelect">
-                    <option value="popularity.desc">Popularity</option>
-                    <option value="release_date.asc">Release Date Ascending</option>
-                    <option value="release_date.desc">Release Date Descending</option>
-                    <option value="original_title.asc">Title</option>
-                    <option value="vote_average.asc">Rating Ascending</option>
-                    <option value="vote_average.desc">Rating Descending</option>
-                  </select>
-                </div>
-                </div>
-
-                <div class="field column is-one-third control">
-                <button class="button is-primary is-large mt-5" id="searchBtn">Search</button>
-                </div>
+          <div class="columns is-multiline is-mobile">
+            <!-- First row of three columns -->
+            <div class="field column is-one-third">
+              <div class="control">
+                <input
+                  id="yearInput"
+                  data-parameter="primary_release_year"
+                  class="searchParamSelectors input"
+                  placeholder="Search by release Year..."
+                />
+              </div>
             </div>
 
-       
-              <!-- houses the result cards, generated by javascript -->
-              <main id="resultCardContainer"></main>
-            
+            <div class="field column is-one-third">
+              <div class="control">
+                <input
+                  data-parameter="vote_average.gte"
+                  id="ratingInput"
+                  class="searchParamSelectors input"
+                  placeholder="Search by minimum rating..."
+                />
+              </div>
             </div>
 
+            <div class="field column is-one-third">
+              <div class="control">
+                <input
+                  data-parameter="vote_average.lte"
+                  id="ratingInput"
+                  class="searchParamSelectors input"
+                  placeholder="Search by maximum rating..."
+                />
+              </div>
+            </div>
+
+            <!-- Second row of three columns -->
+            <div class="field column is-one-third">
+              <div class="control">
+                <input
+                  data-parameter="with_people"
+                  id="peopleInput"
+                  class="searchParamSelectors input"
+                  placeholder="Search by actor/director/crew..."
+                />
+              </div>
+            </div>
+
+            <div class="field column is-one-third">
+              <div class="control">
+                <input
+                  data-parameter="with_runtime.gte"
+                  id="runtimeInputMin"
+                  class="searchParamSelectors input"
+                  placeholder="Search by minimum runtime..."
+                />
+              </div>
+            </div>
+
+            <div class="field column is-one-third">
+              <div class="control">
+                <input
+                  data-parameter="with_runtime.lte"
+                  id="runtimeInputMax"
+                  class="searchParamSelectors input"
+                  placeholder="Search by maximum runtime..."
+                />
+              </div>
+            </div>
+
+            <!-- Third row of three columns -->
+
+            <div class="field column is-one-third">
+              <h5 class="title is-5">Select a genre:</h5>
+              <div class="select">
+                <select id="genreSelect">
+                  <option>Genre</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field column is-one-third">
+              <h5 class="title is-5">Sort by...</h5>
+              <div class="select">
+                <select id="sortSelect">
+                  <option value="popularity.desc">Popularity</option>
+                  <option value="release_date.asc">
+                    Release Date Ascending
+                  </option>
+                  <option value="release_date.desc">
+                    Release Date Descending
+                  </option>
+                  <option value="original_title.asc">Title</option>
+                  <option value="vote_average.asc">Rating Ascending</option>
+                  <option value="vote_average.desc">Rating Descending</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field column is-one-third control">
+              <button class="button is-primary is-large mt-5" id="searchBtn">
+                Search
+              </button>
+            </div>
           </div>
 
-
-    </body>
+          <!-- houses the result cards, generated by javascript -->
+          <section id="resultCardContainer"></section>
+        </div>
+      </div>
+    </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
     <script src="./assets/javascript/advancedSearchScript.js"></script>
   </body>

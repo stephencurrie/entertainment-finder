@@ -25,6 +25,7 @@ body {
 }
 
 .resultCard figure {
+    flex: 1 1 auto;
   display:flex;
   align-items: center;
   justify-content: center;
@@ -43,7 +44,7 @@ body {
 }
 
 .resultCard section {
-  flex: 1 1 85%;
+  flex: 1 1 75%;
 }
 
 @media only screen and (max-width: 769px) {

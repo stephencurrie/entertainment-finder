@@ -126,16 +126,21 @@ function displayCards(tmdbData) {
     );
     console.log(element);
     // these for loops will look up the genre ids given in the tmdb object, and display the genre name related to those ids
-    let genresHTMLString;
-    for (let i = 0; i < genreListArray.length; i++) {
-      if(element.genre_ids[0] === genreListArray[i].id)
-  genresHTMLString = genreListArray[i].name;
+    let genresHTMLString = "";
+    if (element.genre_ids.length > 0) {
+      for (let i = 0; i < genreListArray.length; i++) {
+        if (element.genre_ids[0] === genreListArray[i].id)
+          genresHTMLString = genreListArray[i].name;
+      }
+      for (let i = 1; i < element.genre_ids.length; i++) {
+        for (let k = 0; k < genreListArray.length; k++) {
+          if (element.genre_ids[i] === genreListArray[k].id)
+            genresHTMLString += ", " + genreListArray[k].name;
+        }
+      }
+    }else {
+      genresHTMLString = "None listed"
     }
-    for (let i = 1; i < element.genre_ids.length; i++) {
-    for (let k = 0; k< genreListArray.length; k++) {
-      if(element.genre_ids[i] === genreListArray[k].id)
-      genresHTMLString += ", " + genreListArray[k].name;
-    }}
     // this creates a new card and fills it with the desired information
     const newCard = document.createElement("section");
     console.log(element.overview);
@@ -152,13 +157,13 @@ function displayCards(tmdbData) {
       genresHTMLString +
       `</p><p>Plot: ` +
       element.overview +
-      `<p>TMDB Rating: ` +
+      `</p><p>TMDB Rating: ` +
       element.vote_average +
       `/10</p></section><figure><img alt = "` +
       element.title +
-      ` Poster" src="https://image.tmdb.org/t/p/w185` +
+      ` Poster" src="https://image.tmdb.org/t/p/w500` +
       element.poster_path +
-      `"></img></figure>`;
+      `" onerror="this.onerror=null;this.src='./assets/images/errorImage.jpg';"></img></figure>`;
     newCard.classList = "tile is-child notification is-warning resultCard";
     resultCardContainerEl.append(newCard);
   });

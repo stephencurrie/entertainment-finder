@@ -26,7 +26,7 @@ function getImdbID() {
 function getMovieData(tmdbMovieData) {
   const imdbID = tmdbMovieData.imdb_id;
   var requestUrl =
-    `http://www.omdbapi.com/?i=` + imdbID + `&plot=full&apikey=cf7767a2`;
+    `https://www.omdbapi.com/?i=` + imdbID + `&plot=full&apikey=cf7767a2`;
   // this calls the omdb API. the omdb api is preferable because it outputs quite a bit more information, which is
   // preferable for the expanded view
   fetch(requestUrl).then(function (response) {

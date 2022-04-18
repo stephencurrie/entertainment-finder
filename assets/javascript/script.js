@@ -8,14 +8,9 @@ var todayDate = moment().format("YYYY-MM-DD");
 var baseUrl = "https://api.themoviedb.org";
 var apiKey = "19a1fd696d217cbc89d9176a5b94e4e6";
 let faveList = JSON.parse(localStorage.getItem("favorites")) ?? [];
+var popularMovieContainer = document.getElementById("popularMovieContainer");
 
-// Creates Hamburger Menu
-burgerIcon.addEventListener('click', () => {
-
-  navbarMenu.classList.toggle('is-active');
-});
-
-
+// generates upcoming movies by concatenating a string together from a base URL, user input, and today's date
 var getMovieData = function (e) {
   e.preventDefault();
   resultContainer.textContent = "";
@@ -36,7 +31,6 @@ var getMovieData = function (e) {
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        console.log(data.results);
         if (data.results.length == 0) {
           resultContainer.innerHTML =
             "<p>No result found. Please try again.</p>";
@@ -61,12 +55,11 @@ var getMovieData = function (e) {
               '">Add to Favorites</button></div>';
             resultEl.classList =
               "tile is-child notification is-warning resultCard";
-
-            //if there is no movie
             resultContainer.appendChild(resultEl);
           }
         }
-        // determines the position of the movies in favorites, and if it's not present in the favorites it leaves the button's innerText as "Add to favorites"
+        // determines whether the movie is in favorites, 
+        // and if it's not present in the favorites it leaves the button's innerText as "Add to favorites"
         const removeBtnEl = document.querySelectorAll(".rmvFavBtn");
         removeBtnEl.forEach((element) => {
           if (faveList.indexOf(element.dataset.tmdbid) !== -1) {
@@ -78,15 +71,15 @@ var getMovieData = function (e) {
     }
   });
 };
+
+// determines the remove from favorites button's state and toggles it while removing/adding the movite from/to favorites
 function rmvBtnHandler(target) {
-  // determines the current position of the selected movie in the faveList array, or leaves it as null if it's not in the array
   if (target.dataset.state === "0") {
     target.innerText = "Remove from Favorites";
     target.dataset.state = 1;
     faveList.push(target.dataset.tmdbid);
     localStorage.setItem("favorites", JSON.stringify(faveList));
   }
-  // decides whether the movie is in faveList and adds or removes it
   else if (target.dataset.state === "1") {
     target.innerText = "Add to Favorites";
     target.dataset.state = 0;
@@ -95,6 +88,7 @@ function rmvBtnHandler(target) {
   }
 }
 
+// uses event delegation to put an event listner on our dynamically generate buttons
 resultContainer.addEventListener("click", function (event) {
   event.stopPropagation();
   const target = event.target;
@@ -102,14 +96,10 @@ resultContainer.addEventListener("click", function (event) {
   if (target.classList.contains("rmvFavBtn")) {
     rmvBtnHandler(target);
   }
-  //   need to add an if function into this listener that references the "create calendar event" classes
 });
 
 submitButton.addEventListener("click", getMovieData);
 
-// Da Eun code here
-var submitButton = document.getElementById("searchSubmitBtn");
-var popularMovieContainer = document.getElementById("popularMovieContainer");
 
 var popularMovies = function () {
   var apiUrl =
@@ -145,6 +135,9 @@ var displayPopularMovies = function (popular) {
   }
 };
 
+// resets the value of faveList to the current value of local storage, then checks the state of all buttons and toggles them if necessary
+// this prevents the user from leaving this tab open, changing their favorites on another page, then coming back here and
+// setting their local storage to an earlier state
 window.addEventListener("focus", function () {
   faveList = JSON.parse(localStorage.getItem("favorites")) ?? [];
   const removeBtnEl = document.querySelectorAll(".rmvFavBtn");
@@ -157,4 +150,9 @@ window.addEventListener("focus", function () {
       element.innerText = "Add to Favorites";
     }
   });
+});
+
+// Creates Hamburger Menu
+burgerIcon.addEventListener('click', () => {
+  navbarMenu.classList.toggle('is-active');
 });

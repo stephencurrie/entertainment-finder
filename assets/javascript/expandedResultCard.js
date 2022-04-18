@@ -45,7 +45,7 @@ function createCard(movieData) {
   const parsedReleaseDate = moment(movieData.Released, "DD MMM YYYY").format(
     "MM/DD/YYYY"
   );
-  const newCard = document.createElement("div");
+  const newCard = document.createElement("section");
 
   // the ratings array is of variable length and contents, so the html gets built with a loop
   let ratingsHTML = "";
@@ -64,7 +64,7 @@ function createCard(movieData) {
   }
   // this creates a new card and fills it with the desired information
   newCard.innerHTML =
-    `<div><h2 class="">` +
+    `<section><h2 class="">` +
     movieData.Title +
     `</h2><button class="rmvFavBtn" data-state = 0 data-tmdbid="` +
     tmdbID +
@@ -92,9 +92,11 @@ function createCard(movieData) {
     movieData.Awards +
     `</p>` +
     ratingsHTML +
-    `</p></div><section><img class="" src="` +
+    `</p></section><figure><img alt = "` +
+    movieData.Title +
+    ` Poster"  src="` +
     movieData.Poster +
-    `"></img></section>`;
+    `"></img></figure>`;
   newCard.classList.add("favCard");
   mainCardEl.append(newCard);
   // determines if the movie is in the locally stored favorites and if so, it toggles the button to the correct state

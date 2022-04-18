@@ -34,7 +34,7 @@ function fetchFaveData() {
         });
       } else {
         mainEl.innerHTML =
-          "<h2>Error loading one or more movies; try reloading.</h2>";
+          "<h3>Error loading one or more movies; try reloading.</h3>";
       }
     });
   });
@@ -62,10 +62,10 @@ function populateAllCards() {
     for (let i = 1; i < element.genres.length; i++) {
       genresHTMLString += ", " + element.genres[i].name;
     }
-    let newCard = document.createElement("div");
+    let newCard = document.createElement("section");
     newCard.innerHTML =
       // Movie Info
-      `<div><a class="title is-large" href = "expandedResultCard.html?tmdbID=` +
+      `<section><a class="title is-large" href = "expandedResultCard.html?tmdbID=` +
       element.id +
       `" target="_blank" rel="noopener noreferrer">` +
       element.title +
@@ -81,12 +81,14 @@ function populateAllCards() {
       `</p>
       <button class="rmvFavBtn" data-tmdbid="` +
       element.id +
-      `">Remove</button></div>` +
+      `">Remove</button></section>` +
       // Poster
       // find the row class in the framework and use it for these two
-      `<section class="imgClass"> <img class="" src="https://image.tmdb.org/t/p/w185` +
+      `<figure class="imgClass"><img alt = "` +
+      element.title +
+      ` Poster" src="https://image.tmdb.org/t/p/w185` +
       element.poster_path +
-      `"></img></section>`;
+      `"></img></figure>`;
     newCard.classList.add("favCard");
     newCard.dataset.tmdbid = element.id;
 

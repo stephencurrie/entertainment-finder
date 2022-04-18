@@ -42,9 +42,11 @@ var getMovieData = function (e) {
             var resultEl = document.createElement("article");
 
             resultEl.innerHTML =
-              '<img src="' +
+              '<img alt = "' +
+              data.results[i].title +
+              ' Poster" src="' +
               posterUrl +
-              '"/><div><a href = "expandedResultCard.html?tmdbID=' +
+              '"/><section><a href = "expandedResultCard.html?tmdbID=' +
               resultTMDBId +
               '" target="_blank" rel="noopener noreferrer">' +
               data.results[i].original_title +
@@ -52,13 +54,13 @@ var getMovieData = function (e) {
               data.results[i].release_date +
               '</p><button class="rmvFavBtn" data-state=0 data-tmdbid="' +
               data.results[i].id +
-              '">Add to Favorites</button></div>';
+              '">Add to Favorites</button></section>';
             resultEl.classList =
               "tile is-child notification is-warning resultCard";
             resultContainer.appendChild(resultEl);
           }
         }
-        // determines whether the movie is in favorites, 
+        // determines whether the movie is in favorites,
         // and if it's not present in the favorites it leaves the button's innerText as "Add to favorites"
         const removeBtnEl = document.querySelectorAll(".rmvFavBtn");
         removeBtnEl.forEach((element) => {
@@ -79,8 +81,7 @@ function rmvBtnHandler(target) {
     target.dataset.state = 1;
     faveList.push(target.dataset.tmdbid);
     localStorage.setItem("favorites", JSON.stringify(faveList));
-  }
-  else if (target.dataset.state === "1") {
+  } else if (target.dataset.state === "1") {
     target.innerText = "Add to Favorites";
     target.dataset.state = 0;
     faveList.splice(faveList.indexOf(target.dataset.tmdbid), 1);
@@ -99,7 +100,6 @@ resultContainer.addEventListener("click", function (event) {
 });
 
 submitButton.addEventListener("click", getMovieData);
-
 
 var popularMovies = function () {
   var apiUrl =
@@ -123,11 +123,13 @@ var displayPopularMovies = function (popular) {
     var popularTMDBId = popular[i].id;
     var posterPath = popular[i].poster_path;
     var posterUrl = "https://image.tmdb.org/t/p/original/" + posterPath;
-    var popularEl = document.createElement("div");
+    var popularEl = document.createElement("figure");
     popularEl.innerHTML =
       '<a href="expandedResultCard.html?tmdbID=' +
       popularTMDBId +
-      '" target="_blank" rel="noopener noreferrer"><img src="' +
+      '" target="_blank" rel="noopener noreferrer"><img alt = "' +
+      popular[i].title +
+      ' Poster" src="' +
       posterUrl +
       '"/></a>';
     popularEl.classList = "";
@@ -153,6 +155,6 @@ window.addEventListener("focus", function () {
 });
 
 // Creates Hamburger Menu
-burgerIcon.addEventListener('click', () => {
-  navbarMenu.classList.toggle('is-active');
+burgerIcon.addEventListener("click", () => {
+  navbarMenu.classList.toggle("is-active");
 });

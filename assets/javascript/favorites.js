@@ -84,7 +84,7 @@ function populateAllCards() {
       `">Remove</button></div>` +
       // Poster
       // find the row class in the framework and use it for these two
-      `<section class="imgClass"> <img class="" src="http://image.tmdb.org/t/p/w185` +
+      `<section class="imgClass"> <img class="" src="https://image.tmdb.org/t/p/w185` +
       element.poster_path +
       `"></img></section>`;
     newCard.classList.add("favCard");

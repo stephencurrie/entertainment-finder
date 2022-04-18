@@ -38,7 +38,7 @@ var getMovieData = function (e) {
           for (var i = 0; i < data.results.length; i++) {
             var resultTMDBId = data.results[i].id;
             var posterPath = data.results[i].poster_path;
-            var posterUrl = "https://image.tmdb.org/t/p/original/" + posterPath;
+            var posterUrl = "http://image.tmdb.org/t/p/original/" + posterPath;
             var resultEl = document.createElement("article");
 
             resultEl.innerHTML =
@@ -122,7 +122,7 @@ var displayPopularMovies = function (popular) {
   for (var i = 0; i < 5; i++) {
     var popularTMDBId = popular[i].id;
     var posterPath = popular[i].poster_path;
-    var posterUrl = "https://image.tmdb.org/t/p/original/" + posterPath;
+    var posterUrl = "http://image.tmdb.org/t/p/original/" + posterPath;
     var popularEl = document.createElement("div");
     popularEl.innerHTML =
       '<a href="expandedResultCard.html?tmdbID=' +

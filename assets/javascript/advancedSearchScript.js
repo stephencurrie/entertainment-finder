@@ -138,8 +138,8 @@ function displayCards(tmdbData) {
             genresHTMLString += ", " + genreListArray[k].name;
         }
       }
-    }else {
-      genresHTMLString = "None listed"
+    } else {
+      genresHTMLString = "None listed";
     }
     // this creates a new card and fills it with the desired information
     const newCard = document.createElement("section");
@@ -159,11 +159,13 @@ function displayCards(tmdbData) {
       element.overview +
       `</p><p>TMDB Rating: ` +
       element.vote_average +
-      `/10</p></section><figure><img alt = "` +
+      `/10</p></section><figure><a href = "expandedResultCard.html?tmdbID=` +
+      element.id +
+      `" target="_blank" rel="noopener noreferrer"><img alt = "` +
       element.title +
       ` Poster" src="https://image.tmdb.org/t/p/w500` +
       element.poster_path +
-      `" onerror="this.onerror=null;this.src='./assets/images/errorImage.jpg';"></img></figure>`;
+      `" onerror="this.onerror=null;this.src='./assets/images/errorImage.jpg';"></img></a></figure>`;
     newCard.classList = "tile is-child notification is-warning resultCard";
     resultCardContainerEl.append(newCard);
   });

@@ -25,13 +25,12 @@ body {
 }
 
 .resultCard figure {
-    flex: 1 1 auto;
-  display:flex;
+  flex: 1 1 auto;
+  display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
 }
-
 
 .resultCard a {
   font-weight: bold;
@@ -39,33 +38,34 @@ body {
 }
 
 .resultCard p {
-  padding: 2% 0;
+  padding: 1% 0;
   font-size: 20px;
 }
 
 .resultCard section {
   height: 100%;
-  flex: 1 1 75%;
-  display:flex;
+  flex: 1 1 90%;
+  display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
-.resultCard section button{
-max-width: 250px;
-height: 50px;
-font-size: 20px;
+.resultCard section button {
+  max-width: 250px;
+  height: 50px;
+  font-size: 20px;
 }
 
 @media only screen and (max-width: 769px) {
-.resultCard{
-  display:block
-}
+  .resultCard {
+    display: block;
+  }
 
-.resultCard figure{
-  width:100%;
-}
-.resultCard img{
-  width: 100%;
-}
+  .resultCard figure {
+    width: 100%;
+  }
+
+  .resultCard a img {
+    width: 100%;
+  }
 }

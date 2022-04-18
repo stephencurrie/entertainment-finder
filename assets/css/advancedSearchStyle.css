@@ -12,24 +12,60 @@
   --red: #c81d25;
 }
 
-/* This is just for visibility, can be deleted later */
-#resultCardContainer {
-  background-color: aliceblue;
-  border: solid black 1px;
-  min-height: 100px;
-  min-width: 100px;
-}
-
-footer {
-  position: absolute;
-  bottom: 0;
-  height: 5rem;
-  background-color: lightblue;
-  width: 100%;
-}
-
 body {
-  font-family: 'GothamPro';
-  min-height: 100vh;
-  position:relative;
+  font-family: "GothamPro";
+}
+.resultCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  border: solid 1px black;
+  padding: 1.25rem;
+}
+
+.resultCard figure {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.resultCard a {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.resultCard p {
+  padding: 1% 0;
+  font-size: 20px;
+}
+
+.resultCard section {
+  height: 100%;
+  flex: 1 1 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.resultCard section button {
+  max-width: 250px;
+  height: 50px;
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 769px) {
+  .resultCard {
+    display: block;
+  }
+
+  .resultCard figure {
+    width: 100%;
+  }
+
+  .resultCard a img {
+    width: 100%;
+  }
 }

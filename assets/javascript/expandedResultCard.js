@@ -92,7 +92,9 @@ function createCard(movieData) {
     movieData.Awards +
     `</p>` +
     ratingsHTML +
-    `</p></section><figure><img class="" src="` +
+    `</p></section><figure><img alt = "` +
+    movieData.Title +
+    ` Poster"  src="` +
     movieData.Poster +
     `"></img></figure>`;
   newCard.classList.add("favCard");

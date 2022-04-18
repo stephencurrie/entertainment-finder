@@ -91,7 +91,10 @@ function determineParameters() {
 
 // this function concatenates the base URL, api key, and our search params into one URL, which we then call to get our array of movie info
 function fetchMovies() {
-  const sortingParam = "&sort_by=" + sortingInputEl.value;
+  let sortingParam = "";
+  if (sortingInputEl.value !== "") {
+    sortingParam = "&sort_by=" + sortingInputEl.value;
+  }
   const tmdbURL =
     tmdbBaseURL +
     "discover/movie?api_key=" +
@@ -115,32 +118,48 @@ function fetchMovies() {
 
 // the information from the API call is passed into this function to create cards for each one
 function displayCards(tmdbData) {
+  console.log(tmdbData);
   resultCardContainerEl.innerHTML = "";
   tmdbData.results.forEach((element) => {
     const parsedReleaseDate = moment(element.release_date, "YYYY-MM-DD").format(
       "MM/DD/YYYY"
     );
+    console.log(element);
+    // these for loops will look up the genre ids given in the tmdb object, and display the genre name related to those ids
+    let genresHTMLString;
+    for (let i = 0; i < genreListArray.length; i++) {
+      if(element.genre_ids[0] === genreListArray[i].id)
+  genresHTMLString = genreListArray[i].name;
+    }
+    for (let i = 1; i < element.genre_ids.length; i++) {
+    for (let k = 0; k< genreListArray.length; k++) {
+      if(element.genre_ids[i] === genreListArray[k].id)
+      genresHTMLString += ", " + genreListArray[k].name;
+    }}
     // this creates a new card and fills it with the desired information
     const newCard = document.createElement("section");
+    console.log(element.overview);
     newCard.innerHTML =
       `<section><a href = "expandedResultCard.html?tmdbID=` +
       element.id +
       `" target="_blank" rel="noopener noreferrer">` +
       element.title +
-      `  </a><button class="rmvFavBtn" data-state=0 data-tmdbid="` +
+      `  </a><br><button class="rmvFavBtn" data-state=0 data-tmdbid="` +
       element.id +
       `">Add to Favorites</button><p>Release Date: ` +
       parsedReleaseDate +
+      `</p><p>Genre(s): ` +
+      genresHTMLString +
       `</p><p>Plot: ` +
       element.overview +
-      `</p><p>TMDB Rating: ` +
+      `<p>TMDB Rating: ` +
       element.vote_average +
-      `</p></section><figure><img alt = "` +
+      `/10</p></section><figure><img alt = "` +
       element.title +
       ` Poster" src="https://image.tmdb.org/t/p/w185` +
       element.poster_path +
       `"></img></figure>`;
-    newCard.classList.add("favCard");
+    newCard.classList = "tile is-child notification is-warning resultCard";
     resultCardContainerEl.append(newCard);
   });
 

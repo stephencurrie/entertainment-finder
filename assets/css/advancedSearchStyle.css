@@ -12,24 +12,49 @@
   --red: #c81d25;
 }
 
-/* This is just for visibility, can be deleted later */
-#resultCardContainer {
-  background-color: aliceblue;
-  border: solid black 1px;
-  min-height: 100px;
-  min-width: 100px;
+body {
+  font-family: "GothamPro";
+}
+.resultCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  border: solid 1px black;
+  padding: 1.25rem;
 }
 
-footer {
-  position: absolute;
-  bottom: 0;
-  height: 5rem;
-  background-color: lightblue;
+.resultCard figure {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+
+.resultCard a {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.resultCard p {
+  padding: 2% 0;
+  font-size: 20px;
+}
+
+.resultCard section {
+  flex: 1 1 85%;
+}
+
+@media only screen and (max-width: 769px) {
+.resultCard{
+  display:block
+}
+
+.resultCard figure{
+  width:100%;
+}
+.resultCard img{
   width: 100%;
 }
-
-body {
-  font-family: 'GothamPro';
-  min-height: 100vh;
-  position:relative;
 }

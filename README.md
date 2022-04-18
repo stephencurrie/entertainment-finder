@@ -34,7 +34,7 @@ The application currently incorporates the following technology and functionalit
 - [x] The application is responsive and responds to user input
 - [x] Two server-side APIs are used:
     - The Movie Database (Used for initial movie information)
-    - The Open Movie Database (Used for getting more detail information)
+    - The Open Movie Database (Used for getting more detailed information)
 - [x] The application does not use alerts, confirms, or prompts
 - [x] The application uses client-side storage to persist data (keep your favorite movie list)
 - [x] The application has a polished UI
@@ -65,4 +65,9 @@ The following are the individuals that contributed to this application.  Everyon
 - Ron Crawford - CSS, Javascript
 - Stephen Currie - Layout, Project Manager
 
+## Credits
 
+For our default error image, I used a a free-to-use image from https://icon-library.com/icon/no-picture-available-icon-1.html.
+We used the TMDB and OMDB APIs to search for movies and obtain details about them
+We used the Bulma CSS framework to do much of our styling
+We used font awesome to source a few icons

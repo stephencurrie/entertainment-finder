@@ -50,11 +50,7 @@ body {
   justify-content: flex-start;
 }
 
-.resultCard section button {
-  max-width: 250px;
-  height: 50px;
-  font-size: 20px;
-}
+
 
 @media only screen and (max-width: 769px) {
   .resultCard {

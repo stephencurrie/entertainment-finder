@@ -30,11 +30,6 @@ h2 {
   margin: 38px;
 }
 
-.rmvFavBtn {
-  background-color: #f0ed42;
-  padding: 5px;
-  width: 30%;
-}
 
 body {
   font-family: "GothamPro";
@@ -70,6 +65,7 @@ body {
 
 #expandedInfoCard section section a {
   font-weight: bold;
+  text-align: center;
   font-size: 30px;
 }
 

@@ -149,7 +149,7 @@ function displayCards(tmdbData) {
       element.id +
       `" target="_blank" rel="noopener noreferrer">` +
       element.title +
-      `  </a><br><button class="rmvFavBtn button is-primary is-success" data-state=0 data-tmdbid="` +
+      `  </a><br><button class="rmvFavBtn button is-primary" data-state=0 data-tmdbid="` +
       element.id +
       `">Add to Favorites</button><p>Release Date: ` +
       parsedReleaseDate +

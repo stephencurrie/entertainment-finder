@@ -68,29 +68,29 @@ function createCard(movieData) {
   }
   // this creates a new card and fills it with the desired information
   newCard.innerHTML =
-    `<section><h2 class="">` +
+    `<section><h2>` +
     movieData.Title +
-    `</h2><p>Runtime: ` +
+    `</h2><p><strong>Runtime:</strong> ` +
     movieData.Runtime +
-    `</p><p>Release Date: ` +
+    `</p><p><strong>Release Date:</strong> ` +
     parsedReleaseDate +
-    `</p><p>Genre: ` +
+    `</p><p><strong>Genre:</strong> ` +
     movieData.Genre +
-    `</p><p>Rating (MPAA): ` +
+    `</p><p><stong>Rating (MPAA):</strong> ` +
     movieData.Rated +
-    `</p><p>Country: ` +
+    `</p><p><strong>Country:</strong> ` +
     movieData.Country +
-    `</p><p>Languages: ` +
+    `</p><p><strong>Languages: </strong>` +
     movieData.Language +
-    `</p><p>Plot: ` +
+    `</p><br><p><strong>Plot:</strong> ` +
     movieData.Plot +
-    `</p><p>Top Billed Cast: ` +
+    `</p><br><p><strong>Top Billed Cast: </strong>` +
     movieData.Actors +
-    `</p><p>Director(s): ` +
-    movieData.Director +
-    `</p><p>Writer(s): ` +
+    `</p><br><p><strong>Writer(s):</strong>` +
     movieData.Writer +
-    `</p><p>Awards: ` +
+    `</p><br><p><strong>Director(s):</strong> ` +
+    movieData.Director +
+    `</p><p><strong>Awards: </strong> ` +
     movieData.Awards +
     `</p>` +
     ratingsHTML +
@@ -101,7 +101,7 @@ function createCard(movieData) {
     ` Poster"  src="` +
     movieData.Poster +
     `"></img></figure>`;
-    newCard.classList = "tile is-child notification has-background-info resultCard has-text-white";
+    newCard.classList = "notification has-background-info resultCard has-text-white";
   mainCardEl.append(newCard);
   // determines if the movie is in the locally stored favorites and if so, it toggles the button to the correct state
   const removeBtnEl = document.querySelector(".rmvFavBtn");

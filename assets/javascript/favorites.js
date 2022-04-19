@@ -83,7 +83,10 @@ function populateAllCards() {
       `</p>
       <p>Plot: ` +
       element.overview +
+
       `</p></section>` +
+
+
       // Poster
       // find the row class in the framework and use it for these two
       `<figure class="imgClass"><a href="expandedResultCard.html?tmdbID=` +

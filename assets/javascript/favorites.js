@@ -58,9 +58,12 @@ function populateAllCards() {
       releaseDateDisplayString = parsedReleaseDate;
     }
     // this loop accounts for when there are multiple genres
-    let genresHTMLString = element.genres[0].name;
-    for (let i = 1; i < element.genres.length; i++) {
-      genresHTMLString += ", " + element.genres[i].name;
+    let genresHTMLString = "None specified";
+    if (element.genres.length > 0) {
+      genresHTMLString = element.genres[0].name;
+      for (let i = 1; i < element.genres.length; i++) {
+        genresHTMLString += ", " + element.genres[i].name;
+      }
     }
     let newCard = document.createElement("section");
     newCard.innerHTML =
@@ -84,13 +87,15 @@ function populateAllCards() {
       `">Remove</button></section>` +
       // Poster
       // find the row class in the framework and use it for these two
-      `<figure class="imgClass"><img alt = "` +
+      `<figure class="imgClass"><a href="expandedResultCard.html?tmdbID=` +
+      element.id +
+      `" target="_blank" rel="noopener noreferrer"><img onerror="this.onerror=null;this.src='./assets/images/errorImage.jpg';" alt = "` +
       element.title +
-      ` Poster" src="https://image.tmdb.org/t/p/w185` +
+      ` Poster" src="https://image.tmdb.org/t/p/w342` +
       element.poster_path +
-      `"></img></figure>`;
-      newCard.classList = "tile is-child notification is-warning resultCard";
-      newCard.dataset.tmdbid = element.id;
+      `"></img></a></figure>`;
+    newCard.classList = "tile is-child notification is-warning resultCard";
+    newCard.dataset.tmdbid = element.id;
 
     if (today.isBefore(parsedReleaseDate)) {
       newCard.classList.add("upcomingCard");
@@ -132,7 +137,7 @@ mainEl.addEventListener("click", function (event) {
   }
 });
 
-// this eventListener will rerun the initializing functions when the user navigates back to it; 
+// this eventListener will rerun the initializing functions when the user navigates back to it;
 // this accounts for the user adding more favorites and coming back to this page.
 window.addEventListener("focus", function () {
   faveList = JSON.parse(localStorage.getItem("favorites")) ?? [];

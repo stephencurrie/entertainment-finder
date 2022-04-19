@@ -16,18 +16,14 @@
 /* This is just for visibility, can be deleted later */
 #expandedInfoCard {
   background-color: aliceblue;
-  border: solid black 1px;
   min-height: 100px;
   min-width: 100px;
+  margin:20px;
 }
 /* This is just for visibility, can be deleted later */
 
 h2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 40px;
-  margin: 38px;
 }
 
 
@@ -35,38 +31,24 @@ body {
   font-family: "GothamPro";
 }
 
-#expandedInfoCard section {
+.resultCard {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin:auto;
-  border: solid 1px black;
   padding: 1.25rem;
+  border: solid black 2px;
 }
 
 #expandedInfoCard section figure {
-  flex: 1 1 23%;
+  flex: 1 1 48%;
   display: flex;
-  align-items: center;
-  justify-content: flex-end;   
+  align-items: flex-start;
+  justify-content: flex-start;   
   height: 100%;
-}
-
-#expandedInfoCard section figure a  {
-  width:100%;
-  height: 100%;
-}
-
-#expandedInfoCard section figure a img {
-  width:100%;
-  height: 100%;
-}
-
-#expandedInfoCard section section a {
-  font-weight: bold;
-  text-align: center;
-  font-size: 30px;
+  padding-top: 10px;
+  padding-right: 10px;
 }
 
 #expandedInfoCard section section p {
@@ -76,9 +58,11 @@ body {
 
 #expandedInfoCard section section {
   height: 100%;
-  flex: 1 1 73%;
+  flex: 1 1 48%;
   display: flex;
   flex-direction: column;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 #expandedInfoCard section section button {

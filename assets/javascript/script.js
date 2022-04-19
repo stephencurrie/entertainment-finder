@@ -44,7 +44,7 @@ var getMovieData = function (e) {
             resultEl.innerHTML =
               '<a href="expandedResultCard.html?tmdbID=' +
               data.results[i].id +
-              '" target="_blank" rel="noopener noreferrer"><img alt = "' +
+              '" target="_blank" rel="noopener noreferrer"><img onerror="this.onerror=null;this.src=`./assets/images/errorImage.jpg`;" alt = "' +
               data.results[i].title +
               ' Poster" src="' +
               posterUrl +
@@ -129,7 +129,7 @@ var displayPopularMovies = function (popular) {
     popularEl.innerHTML =
       '<a href="expandedResultCard.html?tmdbID=' +
       popularTMDBId +
-      '" target="_blank" rel="noopener noreferrer"><img alt = "' +
+      '" target="_blank" rel="noopener noreferrer"><img onerror="this.onerror=null;this.src=`./assets/images/errorImage.jpg`;" alt = "' +
       popular[i].title +
       ' Poster" src="' +
       posterUrl +

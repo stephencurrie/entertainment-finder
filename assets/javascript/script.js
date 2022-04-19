@@ -42,21 +42,23 @@ var getMovieData = function (e) {
             var resultEl = document.createElement("article");
 
             resultEl.innerHTML =
-              '<a href="expandedResultCard.html?tmdbID=' +
-              data.results[i].id +
-              '" target="_blank" rel="noopener noreferrer"><img onerror="this.onerror=null;this.src=`./assets/images/errorImage.jpg`;" alt = "' +
-              data.results[i].title +
-              ' Poster" src="' +
-              posterUrl +
-              '"/></a><section><a href = "expandedResultCard.html?tmdbID=' +
-              resultTMDBId +
-              '" target="_blank" rel="noopener noreferrer">' +
-              data.results[i].original_title +
-              "</a><p>Release Date :" +
-              data.results[i].release_date +
-              '</p><button class="rmvFavBtn" data-state=0 data-tmdbid="' +
-              data.results[i].id +
-              '">Add to Favorites</button></section>';
+
+            '<section><a href = "expandedResultCard.html?tmdbID=' +
+            resultTMDBId +
+            '" target="_blank" rel="noopener noreferrer">' +
+            data.results[i].original_title +
+            '</a><br><p>Release Date :' +
+            data.results[i].release_date +
+            '</p><button class="rmvFavBtn button is-success" data-state=0 data-tmdbid="' +
+            resultTMDBId +
+            '">Add to Favorites</button></section><figure><a href = "expandedResultCard.html?tmdbID=' +
+            resultTMDBId +
+            '" target="_blank" rel="noopener noreferrer"><img alt="' +
+            data.results[i].title +
+            ' Poster" src="' +
+            posterUrl +
+            '"></img></a></figure>';
+           
             resultEl.classList =
               "tile is-child notification is-warning resultCard";
             resultContainer.appendChild(resultEl);
@@ -69,6 +71,8 @@ var getMovieData = function (e) {
           if (faveList.indexOf(element.dataset.tmdbid) !== -1) {
             element.dataset.state = 1;
             element.innerText = "Remove from Favorites";
+            element.classList.remove("is-success");
+            element.classList.add("is-danger")
           }
         });
       });
@@ -80,11 +84,15 @@ var getMovieData = function (e) {
 function rmvBtnHandler(target) {
   if (target.dataset.state === "0") {
     target.innerText = "Remove from Favorites";
+    target.classList.remove("is-success")
+    target.classList.add("is-danger")
     target.dataset.state = 1;
     faveList.push(target.dataset.tmdbid);
     localStorage.setItem("favorites", JSON.stringify(faveList));
   } else if (target.dataset.state === "1") {
     target.innerText = "Add to Favorites";
+    target.classList.remove("is-danger")
+    target.classList.add("is-success")
     target.dataset.state = 0;
     faveList.splice(faveList.indexOf(target.dataset.tmdbid), 1);
     localStorage.setItem("favorites", JSON.stringify(faveList));

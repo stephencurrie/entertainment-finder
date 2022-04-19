@@ -83,4 +83,9 @@ body {
   .upcomingCard a img, .alreadyReleasedCard a img {
     width: 100%;
   }
+
+  .rmvFavBtn {
+    margin:2% 0
+  }
+
 }

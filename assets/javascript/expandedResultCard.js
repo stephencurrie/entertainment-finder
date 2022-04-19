@@ -24,6 +24,7 @@ function getImdbID() {
 
 // performs an API call using the imdb ID we just obtained
 function getMovieData(tmdbMovieData) {
+
   const imdbID = tmdbMovieData.imdb_id;
   var requestUrl =
     `https://www.omdbapi.com/?i=` + imdbID + `&plot=full&apikey=cf7767a2`;
@@ -66,9 +67,7 @@ function createCard(movieData) {
   newCard.innerHTML =
     `<section><h2 class="">` +
     movieData.Title +
-    `</h2><button class="rmvFavBtn" data-state = 0 data-tmdbid="` +
-    tmdbID +
-    `">Add to Favorites</button><p>Runtime: ` +
+    `</h2><p>Runtime: ` +
     movieData.Runtime +
     `</p><p>Release Date: ` +
     parsedReleaseDate +
@@ -92,12 +91,14 @@ function createCard(movieData) {
     movieData.Awards +
     `</p>` +
     ratingsHTML +
-    `</p></section><figure><img alt = "` +
+    `</p><button class="rmvFavBtn" data-state = 0 data-tmdbid="` +
+    tmdbID +
+    `">Add to Favorites</button></section><figure><img alt = "` +
     movieData.Title +
     ` Poster"  src="` +
     movieData.Poster +
     `"></img></figure>`;
-  newCard.classList.add("favCard");
+    newCard.classList = "tile is-child notification has-background-info resultCard has-text-white";
   mainCardEl.append(newCard);
   // determines if the movie is in the locally stored favorites and if so, it toggles the button to the correct state
   const removeBtnEl = document.querySelector(".rmvFavBtn");

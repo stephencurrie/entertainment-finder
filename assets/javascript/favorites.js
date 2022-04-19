@@ -89,8 +89,8 @@ function populateAllCards() {
       ` Poster" src="https://image.tmdb.org/t/p/w185` +
       element.poster_path +
       `"></img></figure>`;
-    newCard.classList.add("favCard");
-    newCard.dataset.tmdbid = element.id;
+      newCard.classList = "tile is-child notification is-warning resultCard";
+      newCard.dataset.tmdbid = element.id;
 
     if (today.isBefore(parsedReleaseDate)) {
       newCard.classList.add("upcomingCard");

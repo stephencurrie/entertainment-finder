@@ -20,49 +20,67 @@ h2 {
   margin: 38px;
 }
 
-/* #upcomingContainer {
-  display: flex;
-  border: 2px solid;
-} */
-
-.upcomingCard, .alreadyReleasedCard {
-  display: flex;
-  background-color: var(---light);
-}
-
-/* .header1 {
-  background-color: var(--blue);
-  padding: 1%;
-} */
-/* 
-#title {
-  color: var(--light);
-}
-
-#link {
-  color: var(--light);
-}
-
-#links {
-  text-align: right;
-} */
-
 .rmvFavBtn {
   background-color: #4059ad;
   padding: 5px;
   width: 30%;
 }
 
-
 body {
-  font-family: 'GothamPro';
+  font-family: "GothamPro";
 }
 
-
-/* .upcomingCardContainer{
-  
-}
-.imgClass {
+.upcomingCard, .alreadyReleasedCard {
   display: flex;
-  justify-content: right;
-} */
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  border: solid 1px black;
+  padding: 1.25rem;
+}
+
+.upcomingCard figure, .alreadyReleasedCard figure {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.upcomingCard a, .alreadyReleasedCard a {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.upcomingCard p, .alreadyReleasedCard p {
+  padding: 1% 0;
+  font-size: 20px;
+}
+
+.upcomingCard section, .alreadyReleasedCard section {
+  height: 100%;
+  flex: 1 1 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.upcomingCard section button, .alreadyReleasedCard section button {
+  max-width: 250px;
+  height: 50px;
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 769px) {
+  .upcomingCard, .alreadyReleasedCard {
+    display: block;
+  }
+
+  .upcomingCard figure, .alreadyReleasedCard figure {
+    width: 100%;
+  }
+
+  .upcomingCard a img, .alreadyReleasedCard a img {
+    width: 100%;
+  }
+}

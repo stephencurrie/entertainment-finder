@@ -47,7 +47,7 @@ var getMovieData = function (e) {
             resultTMDBId +
             '" target="_blank" rel="noopener noreferrer">' +
             data.results[i].original_title +
-            '</a><br><p>Release Date :' +
+            '</a><br><p>Release Date: ' +
             data.results[i].release_date +
             '</p><button class="rmvFavBtn button is-success" data-state=0 data-tmdbid="' +
             resultTMDBId +

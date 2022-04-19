@@ -31,16 +31,27 @@ h1 {
     margin: auto;
   }
   
-.resultCard {
-  min-height:350px;
-  margin:auto
-}
+  .resultCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    border: solid 1px black;
+    padding: 1.25rem;
+  }
 
-.resultCard img {
-  float:right;
-  max-height: 100%;
+.resultCard figure {
+  flex: 1 1 23%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;   
+  height: 100%;
 }
-
+.resultCard figure a img {
+  width:100%;
+  min-width:150px;
+  height: 100%;
+}
 .resultCard a {
   font-weight: bold;
   font-size: 30px;
@@ -51,10 +62,39 @@ h1 {
   font-size: 20px;
 }
 
-.resultCard div {
-  padding: 4% 0
+.resultCard section {
+  height: 100%;
+  flex: 1 1 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
-.columns {
-  margin: 0;
+.resultCard section  button {
+  width: 250px;
+  height: auto;
+  margin-top:2%;
+  font-size: 20px;
+}
+@media (max-width: 769px) {
+  .resultCard {
+    display: block;
+  }
+
+  .resultCard figure {
+    width: 100%;
+  }
+
+  .resultCard a img {
+    width: 100%;
+  }
+
+  .resultCard section button {
+    margin: 2% 0;
+  }
+
+  .resultCard p {
+    padding:0;
+    font-size: 20px;
+  }
 }

@@ -82,7 +82,7 @@ function populateAllCards() {
       <p>Plot: ` +
       element.overview +
       `</p>
-      <button class="rmvFavBtn" data-tmdbid="` +
+      <button class="rmvFavBtn button is-danger" data-tmdbid="` +
       element.id +
       `">Remove</button></section>` +
       // Poster

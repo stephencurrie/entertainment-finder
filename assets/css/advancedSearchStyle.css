@@ -49,12 +49,12 @@ body {
   flex-direction: column;
   justify-content: flex-start;
 }
-
-.resultCard section button {
-  max-width: 250px;
-  height: 50px;
+.resultCard section  button {
+  width: 250px;
+  height: auto;
   font-size: 20px;
 }
+
 
 @media only screen and (max-width: 769px) {
   .resultCard {

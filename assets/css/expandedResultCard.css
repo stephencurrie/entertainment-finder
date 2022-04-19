@@ -30,11 +30,6 @@ h2 {
   margin: 38px;
 }
 
-.rmvFavBtn {
-  background-color: #f0ed42;
-  padding: 5px;
-  width: 30%;
-}
 
 body {
   font-family: "GothamPro";
@@ -42,6 +37,7 @@ body {
 
 #expandedInfoCard section {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin:auto;
@@ -69,6 +65,7 @@ body {
 
 #expandedInfoCard section section a {
   font-weight: bold;
+  text-align: center;
   font-size: 30px;
 }
 
@@ -81,25 +78,25 @@ body {
   height: 100%;
   flex: 1 1 73%;
   display: flex;
-flex-direction: column;
+  flex-direction: column;
 }
 
 #expandedInfoCard section section button {
-  max-width: 250px;
-  height: 50px;
+  width: 250px;
+  height: auto;
   font-size: 20px;
 }
 
-@media only screen and (max-width: 769px) {
-  #expandedInfoCard {
-    display: block;
+@media (max-width: 769px) {
+  #expandedInfoCard section{
+    flex-direction: column-reverse;
+    border: solid 1px black;
   }
 
+  #expandedInfoCard section section {
+    border: none;
+  }
   #expandedInfoCard section figure {
-    width: 100%;
-  }
-
-  #expandedInfoCard section figure a img {
-    width: 100%;
+    margin-bottom: 1%;
   }
 }

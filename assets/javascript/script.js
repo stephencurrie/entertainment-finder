@@ -59,6 +59,7 @@ var getMovieData = function (e) {
             posterUrl +
             '"></img></a></figure>';
            
+
             resultEl.classList =
               "tile is-child notification is-warning resultCard";
             resultContainer.appendChild(resultEl);
@@ -70,6 +71,8 @@ var getMovieData = function (e) {
         removeBtnEl.forEach((element) => {
           if (faveList.indexOf(element.dataset.tmdbid) !== -1) {
             element.dataset.state = 1;
+            element.classList.remove("is-success");
+            element.classList.add("is-danger");
             element.innerText = "Remove from Favorites";
             element.classList.remove("is-success");
             element.classList.add("is-danger")
@@ -81,18 +84,23 @@ var getMovieData = function (e) {
 };
 
 // determines the remove from favorites button's state and toggles it while removing/adding the movite from/to favorites
+// determines what state the button is in and reacts accordingly
 function rmvBtnHandler(target) {
   if (target.dataset.state === "0") {
     target.innerText = "Remove from Favorites";
-    target.classList.remove("is-success")
-    target.classList.add("is-danger")
+
+    target.classList.remove("is-success");
+    target.classList.add("is-danger");
+
     target.dataset.state = 1;
     faveList.push(target.dataset.tmdbid);
     localStorage.setItem("favorites", JSON.stringify(faveList));
   } else if (target.dataset.state === "1") {
     target.innerText = "Add to Favorites";
-    target.classList.remove("is-danger")
-    target.classList.add("is-success")
+
+    target.classList.remove("is-danger");
+    target.classList.add("is-success");
+
     target.dataset.state = 0;
     faveList.splice(faveList.indexOf(target.dataset.tmdbid), 1);
     localStorage.setItem("favorites", JSON.stringify(faveList));
@@ -147,9 +155,9 @@ var displayPopularMovies = function (popular) {
   }
 };
 
-// resets the value of faveList to the current value of local storage, then checks the state of all buttons and toggles them if necessary
-// this prevents the user from leaving this tab open, changing their favorites on another page, then coming back here and
-// setting their local storage to an earlier state
+// this eventListener will reset favorites and favorite buttons; this accounts for the user adding the movie as a favorite and then
+// tabbing back to this page. If this isn't done after adding favorites from another page
+// the faveList array on this page could reset the localstorage to an earlier state
 window.addEventListener("focus", function () {
   faveList = JSON.parse(localStorage.getItem("favorites")) ?? [];
   const removeBtnEl = document.querySelectorAll(".rmvFavBtn");
@@ -157,9 +165,13 @@ window.addEventListener("focus", function () {
     if (faveList.indexOf(element.dataset.tmdbid) !== -1) {
       element.dataset.state = 1;
       element.innerText = "Remove from Favorites";
+      element.classList.remove("is-success");
+      element.classList.add("is-danger");
     } else {
       element.dataset.state = 0;
       element.innerText = "Add to Favorites";
+      element.classList.remove("is-danger");
+      element.classList.add("is-success");
     }
   });
 });

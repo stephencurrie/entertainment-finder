@@ -75,7 +75,9 @@ function createCard(movieData) {
   newCard.innerHTML =
     `<section><h2>` +
     movieData.Title +
-    `</h2><p><strong>Runtime:</strong> ` +
+    `</h2><button class="rmvFavBtn button is-success" data-state = 0 data-tmdbid="` +
+    tmdbID +
+    `">Add to Favorites</button><p><strong>Runtime:</strong> ` +
     movieData.Runtime +
     `</p><p><strong>Release Date:</strong> ` +
     parsedReleaseDate +
@@ -99,9 +101,7 @@ function createCard(movieData) {
     movieData.Awards +
     `</p>` +
     ratingsHTML +
-    `</p><button class="rmvFavBtn button is-primary " data-state = 0 data-tmdbid="` +
-    tmdbID +
-    `">Add to Favorites</button></section><figure><img onerror="this.onerror=null;this.src='./assets/images/errorImage.jpg';" alt = "` +
+    `</p></section><figure><img onerror="this.onerror=null;this.src='./assets/images/errorImage.jpg';" alt = "` +
     movieData.Title +
     ` Poster" src="https://image.tmdb.org/t/p/w780` +
     posterPath +
@@ -158,9 +158,13 @@ window.addEventListener("focus", function () {
     if (faveList.indexOf(element.dataset.tmdbid) !== -1) {
       element.dataset.state = 1;
       element.innerText = "Remove from Favorites";
+      element.classList.remove("is-success");
+      element.classList.add("is-danger");
     } else {
       element.dataset.state = 0;
       element.innerText = "Add to Favorites";
+      element.classList.remove("is-danger");
+      element.classList.add("is-success");
     }
   });
 });

@@ -72,7 +72,9 @@ function populateAllCards() {
       element.id +
       `" target="_blank" rel="noopener noreferrer">` +
       element.title +
-      `</a>
+      `</a><button class="rmvFavBtn button is-danger" data-tmdbid="` +
+      element.id +
+      `">Remove from Favorites</button>
       <p>Release Date: ` +
       releaseDateDisplayString +
       `</p>
@@ -81,10 +83,10 @@ function populateAllCards() {
       `</p>
       <p>Plot: ` +
       element.overview +
-      `</p>
-      <button class="rmvFavBtn button is-danger" data-tmdbid="` +
-      element.id +
-      `">Remove</button></section>` +
+
+      `</p></section>` +
+
+
       // Poster
       // find the row class in the framework and use it for these two
       `<figure class="imgClass"><a href="expandedResultCard.html?tmdbID=` +

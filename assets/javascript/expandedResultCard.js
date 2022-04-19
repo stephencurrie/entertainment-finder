@@ -6,7 +6,7 @@ const today = moment();
 let faveList = JSON.parse(localStorage.getItem("favorites")) ?? [];
 const tmdbBaseURL = "https://api.themoviedb.org/3/movie/";
 const tmdbApiKey = "1288fee4b00de870e735f788ed6723bc";
-
+let posterPath = "";
 var burgerIcon = document.querySelector("#burger");
 var navbarMenu = document.querySelector("#nav-links");
 
@@ -27,7 +27,7 @@ function getImdbID() {
 
 // performs an API call using the imdb ID we just obtained
 function getMovieData(tmdbMovieData) {
-
+  posterPath = tmdbMovieData.poster_path;
   const imdbID = tmdbMovieData.imdb_id;
   var requestUrl =
     `https://www.omdbapi.com/?i=` + imdbID + `&plot=full&apikey=cf7767a2`;
@@ -50,7 +50,12 @@ function createCard(movieData) {
     "MM/DD/YYYY"
   );
   const newCard = document.createElement("section");
-
+  let genreHTML = "";
+  if (movieData.Genre.length > 0) {
+    genreHTML = movieData.Genre;
+  } else {
+    genreHTML = "None listed.";
+  }
   // the ratings array is of variable length and contents, so the html gets built with a loop
   let ratingsHTML = "";
   if (movieData.Ratings.length > 0) {
@@ -75,7 +80,7 @@ function createCard(movieData) {
     `</p><p><strong>Release Date:</strong> ` +
     parsedReleaseDate +
     `</p><p><strong>Genre:</strong> ` +
-    movieData.Genre +
+    genreHTML +
     `</p><p><stong>Rating (MPAA):</strong> ` +
     movieData.Rated +
     `</p><p><strong>Country:</strong> ` +
@@ -96,12 +101,13 @@ function createCard(movieData) {
     ratingsHTML +
     `</p><button class="rmvFavBtn button is-primary " data-state = 0 data-tmdbid="` +
     tmdbID +
-    `">Add to Favorites</button></section><figure><img alt = "` +
+    `">Add to Favorites</button></section><figure><img onerror="this.onerror=null;this.src='./assets/images/errorImage.jpg';" alt = "` +
     movieData.Title +
-    ` Poster"  src="` +
-    movieData.Poster +
+    ` Poster" src="https://image.tmdb.org/t/p/w780` +
+    posterPath +
     `"></img></figure>`;
-    newCard.classList = "notification has-background-info resultCard has-text-white";
+  newCard.classList =
+    "notification has-background-info resultCard has-text-white";
   mainCardEl.append(newCard);
   // determines if the movie is in the locally stored favorites and if so, it toggles the button to the correct state
   const removeBtnEl = document.querySelector(".rmvFavBtn");
@@ -109,7 +115,7 @@ function createCard(movieData) {
     removeBtnEl.dataset.state = 1;
     removeBtnEl.innerText = "Remove from Favorites";
     removeBtnEl.classList.remove("is-success");
-    removeBtnEl.classList.add("is-danger")
+    removeBtnEl.classList.add("is-danger");
   }
 }
 
@@ -119,22 +125,21 @@ getImdbID();
 function rmvBtnHandler(target) {
   if (target.dataset.state === "0") {
     target.innerText = "Remove from Favorites";
-    target.classList.remove("is-success")
-    target.classList.add("is-danger")
+    target.classList.remove("is-success");
+    target.classList.add("is-danger");
     target.dataset.state = 1;
     faveList.push(target.dataset.tmdbid);
     localStorage.setItem("favorites", JSON.stringify(faveList));
-  }
-  else if (target.dataset.state === "1") {
+  } else if (target.dataset.state === "1") {
     target.innerText = "Add to Favorites";
-    target.classList.remove("is-danger")
-    target.classList.add("is-success")
+    target.classList.remove("is-danger");
+    target.classList.add("is-success");
     target.dataset.state = 0;
     faveList.splice(faveList.indexOf(target.dataset.tmdbid), 1);
     localStorage.setItem("favorites", JSON.stringify(faveList));
   }
 }
-  //   using event delegation, determines if the target has the rmvFavBtn class and runs the rmvBtnHandler function if so
+//   using event delegation, determines if the target has the rmvFavBtn class and runs the rmvBtnHandler function if so
 mainCardEl.addEventListener("click", function (event) {
   event.stopPropagation();
   const target = event.target;
@@ -160,10 +165,8 @@ window.addEventListener("focus", function () {
   });
 });
 
-
 // Hamburger menu
 
-burgerIcon.addEventListener('click', () => {
-
-    navbarMenu.classList.toggle('is-active');
-  });
+burgerIcon.addEventListener("click", () => {
+  navbarMenu.classList.toggle("is-active");
+});

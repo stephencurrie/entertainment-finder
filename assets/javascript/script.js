@@ -38,19 +38,21 @@ var getMovieData = function (e) {
           for (var i = 0; i < data.results.length; i++) {
             var resultTMDBId = data.results[i].id;
             var posterPath = data.results[i].poster_path;
-            var posterUrl = "https://image.tmdb.org/t/p/original/" + posterPath;
+            var posterUrl = "https://image.tmdb.org/t/p/w500/" + posterPath;
             var resultEl = document.createElement("article");
 
             resultEl.innerHTML =
-              '<img alt = "' +
+              '<a href="expandedResultCard.html?tmdbID=' +
+              data.results[i].id +
+              '" target="_blank" rel="noopener noreferrer"><img onerror="this.onerror=null;this.src=`./assets/images/errorImage.jpg`;" alt = "' +
               data.results[i].title +
               ' Poster" src="' +
               posterUrl +
-              '"/><section><a href = "expandedResultCard.html?tmdbID=' +
+              '"/></a><section><a href = "expandedResultCard.html?tmdbID=' +
               resultTMDBId +
               '" target="_blank" rel="noopener noreferrer">' +
               data.results[i].original_title +
-              "</a><p>Release Date:" +
+              "</a><p>Release Date :" +
               data.results[i].release_date +
               '</p><button class="rmvFavBtn" data-state=0 data-tmdbid="' +
               data.results[i].id +
@@ -127,7 +129,7 @@ var displayPopularMovies = function (popular) {
     popularEl.innerHTML =
       '<a href="expandedResultCard.html?tmdbID=' +
       popularTMDBId +
-      '" target="_blank" rel="noopener noreferrer"><img alt = "' +
+      '" target="_blank" rel="noopener noreferrer"><img onerror="this.onerror=null;this.src=`./assets/images/errorImage.jpg`;" alt = "' +
       popular[i].title +
       ' Poster" src="' +
       posterUrl +

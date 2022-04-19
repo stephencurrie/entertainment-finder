@@ -149,7 +149,7 @@ function displayCards(tmdbData) {
       element.id +
       `" target="_blank" rel="noopener noreferrer">` +
       element.title +
-      `  </a><br><button class="rmvFavBtn" data-state=0 data-tmdbid="` +
+      `  </a><br><button class="rmvFavBtn button is-primary is-success" data-state=0 data-tmdbid="` +
       element.id +
       `">Add to Favorites</button><p>Release Date: ` +
       parsedReleaseDate +
@@ -176,6 +176,8 @@ function displayCards(tmdbData) {
     if (faveList.indexOf(element.dataset.tmdbid) !== -1) {
       element.dataset.state = 1;
       element.innerText = "Remove from Favorites";
+      element.classList.remove("is-success")
+      element.classList.add("is-danger")
     }
   });
 }
@@ -184,11 +186,15 @@ function displayCards(tmdbData) {
 function rmvBtnHandler(target) {
   if (target.dataset.state === "0") {
     target.innerText = "Remove from Favorites";
+    target.classList.remove("is-success")
+    target.classList.add("is-danger")
     target.dataset.state = 1;
     faveList.push(target.dataset.tmdbid);
     localStorage.setItem("favorites", JSON.stringify(faveList));
   } else if (target.dataset.state === "1") {
     target.innerText = "Add to Favorites";
+    target.classList.remove("is-danger")
+    target.classList.add("is-success")
     target.dataset.state = 0;
     faveList.splice(faveList.indexOf(target.dataset.tmdbid), 1);
     localStorage.setItem("favorites", JSON.stringify(faveList));

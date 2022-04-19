@@ -46,26 +46,39 @@ function getMovieData(tmdbMovieData) {
 
 // creates card using info returned by the API call
 function createCard(movieData) {
+  if(movieData.Title ===undefined){
+    mainCardEl.innerHTML = "<h2>Movie not found in expanded database.</h2>"
+    return;
+  }
   const parsedReleaseDate = moment(movieData.Released, "DD MMM YYYY").format(
     "MM/DD/YYYY"
   );
   const newCard = document.createElement("section");
   let genreHTML = "";
-  if (movieData.Genre.length > 0) {
-    genreHTML = movieData.Genre;
+  console.log(movieData)
+  if (movieData.Genres) {
+    if (movieData.Genre.length > 0) {
+      genreHTML = movieData.Genre;
+    } else {
+      genreHTML = "None listed.";
+    }
   } else {
     genreHTML = "None listed.";
   }
   // the ratings array is of variable length and contents, so the html gets built with a loop
   let ratingsHTML = "";
-  if (movieData.Ratings.length > 0) {
-    for (let i = 0; i < movieData.Ratings.length; i++) {
-      ratingsHTML +=
-        `<p>` +
-        movieData.Ratings[i].Source +
-        ` Rating: ` +
-        movieData.Ratings[i].Value +
-        `</p>`;
+  if (movieData.Ratings) {
+    if (movieData.Ratings.length > 0) {
+      for (let i = 0; i < movieData.Ratings.length; i++) {
+        ratingsHTML +=
+          `<p>` +
+          movieData.Ratings[i].Source +
+          ` Rating: ` +
+          movieData.Ratings[i].Value +
+          `</p>`;
+      }
+    } else {
+      ratingsHTML = "<p>Ratings: N/A</p>";
     }
   } else {
     // default if there are no ratings yet, which is common for movies that haven't been released

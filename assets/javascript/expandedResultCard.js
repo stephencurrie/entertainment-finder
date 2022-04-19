@@ -7,6 +7,9 @@ let faveList = JSON.parse(localStorage.getItem("favorites")) ?? [];
 const tmdbBaseURL = "https://api.themoviedb.org/3/movie/";
 const tmdbApiKey = "1288fee4b00de870e735f788ed6723bc";
 
+var burgerIcon = document.querySelector("#burger");
+var navbarMenu = document.querySelector("#nav-links");
+
 // plugs the tmdbID we got from the tmdbID URL param into an api call to to get the imdb ID, which we then use for the next API call
 function getImdbID() {
   fetch(tmdbBaseURL + tmdbID + "?api_key=" + tmdbApiKey).then(function (
@@ -150,3 +153,11 @@ window.addEventListener("focus", function () {
     }
   });
 });
+
+
+// Hamburger menu
+
+burgerIcon.addEventListener('click', () => {
+
+    navbarMenu.classList.toggle('is-active');
+  });

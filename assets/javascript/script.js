@@ -74,8 +74,6 @@ var getMovieData = function (e) {
             element.classList.remove("is-success");
             element.classList.add("is-danger");
             element.innerText = "Remove from Favorites";
-            element.classList.remove("is-success");
-            element.classList.add("is-danger")
           }
         });
       });
@@ -88,19 +86,15 @@ var getMovieData = function (e) {
 function rmvBtnHandler(target) {
   if (target.dataset.state === "0") {
     target.innerText = "Remove from Favorites";
-
     target.classList.remove("is-success");
     target.classList.add("is-danger");
-
     target.dataset.state = 1;
     faveList.push(target.dataset.tmdbid);
     localStorage.setItem("favorites", JSON.stringify(faveList));
   } else if (target.dataset.state === "1") {
     target.innerText = "Add to Favorites";
-
     target.classList.remove("is-danger");
     target.classList.add("is-success");
-
     target.dataset.state = 0;
     faveList.splice(faveList.indexOf(target.dataset.tmdbid), 1);
     localStorage.setItem("favorites", JSON.stringify(faveList));

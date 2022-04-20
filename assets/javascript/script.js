@@ -10,6 +10,7 @@ var apiKey = "19a1fd696d217cbc89d9176a5b94e4e6";
 let faveList = JSON.parse(localStorage.getItem("favorites")) ?? [];
 var popularMovieContainer = document.getElementById("popularMovieContainer");
 
+
 // generates upcoming movies by concatenating a string together from a base URL, user input, and today's date
 var getMovieData = function (e) {
   e.preventDefault();
@@ -31,6 +32,7 @@ var getMovieData = function (e) {
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
+        console.log(data)
         if (data.results.length == 0) {
           resultContainer.innerHTML =
             "<p>No result found. Please try again.</p>";

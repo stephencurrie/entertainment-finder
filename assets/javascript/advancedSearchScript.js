@@ -147,17 +147,17 @@ function displayCards(tmdbData) {
     newCard.innerHTML =
       `<section><a href = "expandedResultCard.html?tmdbID=` +
       element.id +
-      `" target="_blank" rel="noopener noreferrer">` +
+      `" target="_blank" rel="noopener noreferrer"><strong>` +
       element.title +
-      `  </a><br><button class="rmvFavBtn button is-success" data-state=0 data-tmdbid="` +
+      `  </strong></a><br><button class="rmvFavBtn button is-success" data-state=0 data-tmdbid="` +
       element.id +
-      `">Add to Favorites</button><p>Release Date: ` +
+      `">Add to Favorites</button><p><strong>Release Date: </strong>` +
       parsedReleaseDate +
-      `</p><p>Genre(s): ` +
+      `</p><p><strong>Genre(s): </strong>` +
       genresHTMLString +
-      `</p><p>Plot: ` +
+      `</p><p><strong>Plot: </strong>` +
       element.overview +
-      `</p><p>TMDB Rating: ` +
+      `</p><p><strong>TMDB Rating: </strong>` +
       element.vote_average +
       `/10</p></section><figure><a href = "expandedResultCard.html?tmdbID=` +
       element.id +

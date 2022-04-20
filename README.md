@@ -71,3 +71,4 @@ For our default error image, I used a a free-to-use image from https://icon-libr
 We used the TMDB and OMDB APIs to search for movies and obtain details about them
 We used the Bulma CSS framework to do much of our styling
 We used font awesome to source a few icons
+We used moment to assist us with parsing and formatting dates

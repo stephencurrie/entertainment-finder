@@ -84,8 +84,9 @@ body {
     width: 100%;
   }
 
-  .rmvFavBtn {
-    margin:2% 0
+  .upcomingCard section button, .alreadyReleasedCard section button {
+    margin:2% 0;
+    width:auto;
   }
 
 }

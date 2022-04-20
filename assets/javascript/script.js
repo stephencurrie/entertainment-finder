@@ -10,7 +10,6 @@ var apiKey = "19a1fd696d217cbc89d9176a5b94e4e6";
 let faveList = JSON.parse(localStorage.getItem("favorites")) ?? [];
 var popularMovieContainer = document.getElementById("popularMovieContainer");
 
-
 // generates upcoming movies by concatenating a string together from a base URL, user input, and today's date
 var getMovieData = function (e) {
   e.preventDefault();
@@ -32,7 +31,7 @@ var getMovieData = function (e) {
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        console.log(data)
+        console.log(data);
         if (data.results.length == 0) {
           resultContainer.innerHTML =
             "<p>No result found. Please try again.</p>";
@@ -42,25 +41,26 @@ var getMovieData = function (e) {
             var posterPath = data.results[i].poster_path;
             var posterUrl = "https://image.tmdb.org/t/p/w500/" + posterPath;
             var resultEl = document.createElement("article");
-
+            const parsedReleaseDate = moment(
+              data.results[i].release_date,
+              "YYYY-MM-DD"
+            ).format("MM/DD/YYYY");
             resultEl.innerHTML =
-
-            '<section><a href = "expandedResultCard.html?tmdbID=' +
-            resultTMDBId +
-            '" target="_blank" rel="noopener noreferrer">' +
-            data.results[i].original_title +
-            '</a><br><p>Release Date: ' +
-            data.results[i].release_date +
-            '</p><button class="rmvFavBtn button is-success" data-state=0 data-tmdbid="' +
-            resultTMDBId +
-            '">Add to Favorites</button></section><figure><a href = "expandedResultCard.html?tmdbID=' +
-            resultTMDBId +
-            '" target="_blank" rel="noopener noreferrer"><img alt="' +
-            data.results[i].title +
-            ' Poster" src="' +
-            posterUrl +
-            '"></img></a></figure>';
-           
+              '<section><a href = "expandedResultCard.html?tmdbID=' +
+              resultTMDBId +
+              '" target="_blank" rel="noopener noreferrer">' +
+              data.results[i].original_title +
+              "</a><br><p><strong>Release Date: </strong>" +
+              parsedReleaseDate +
+              '</p><button class="rmvFavBtn button is-success" data-state=0 data-tmdbid="' +
+              resultTMDBId +
+              '">Add to Favorites</button></section><figure><a href = "expandedResultCard.html?tmdbID=' +
+              resultTMDBId +
+              '" target="_blank" rel="noopener noreferrer"><img alt="' +
+              data.results[i].title +
+              ' Poster" src="' +
+              posterUrl +
+              '"></img></a></figure>';
 
             resultEl.classList =
               "tile is-child notification is-warning resultCard";

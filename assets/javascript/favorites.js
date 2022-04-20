@@ -70,26 +70,20 @@ function populateAllCards() {
       // Movie Info
       `<section><a class="title is-large" href = "expandedResultCard.html?tmdbID=` +
       element.id +
-      `" target="_blank" rel="noopener noreferrer">` +
+      `" target="_blank" rel="noopener noreferrer"><strong>` +
       element.title +
-      `</a><button class="rmvFavBtn button is-danger" data-tmdbid="` +
+      `</strong></a><button class="rmvFavBtn button is-danger" data-tmdbid="` +
       element.id +
       `">Remove from Favorites</button>
-      <p>Release Date: ` +
+      <p><strong>Release Date: </strong>` +
       releaseDateDisplayString +
       `</p>
-      <p>Genre(s): ` +
+      <p><strong>Genre(s): </strong>` +
       genresHTMLString +
       `</p>
-      <p>Plot: ` +
+      <p><strong>Plot: </strong>` +
       element.overview +
-
-      `</p></section>` +
-
-
-      // Poster
-      // find the row class in the framework and use it for these two
-      `<figure class="imgClass"><a href="expandedResultCard.html?tmdbID=` +
+      `</p></section><figure class="imgClass"><a href="expandedResultCard.html?tmdbID=` +
       element.id +
       `" target="_blank" rel="noopener noreferrer"><img onerror="this.onerror=null;this.src='./assets/images/errorImage.jpg';" alt = "` +
       element.title +

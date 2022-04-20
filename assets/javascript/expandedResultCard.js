@@ -46,8 +46,8 @@ function getMovieData(tmdbMovieData) {
 
 // creates card using info returned by the API call
 function createCard(movieData) {
-  if(movieData.Title ===undefined){
-    mainCardEl.innerHTML = "<h2>Movie not found in expanded database.</h2>"
+  if (movieData.Title === undefined) {
+    mainCardEl.innerHTML = "<h2>Movie not found in expanded database.</h2>";
     return;
   }
   const parsedReleaseDate = moment(movieData.Released, "DD MMM YYYY").format(
@@ -55,62 +55,54 @@ function createCard(movieData) {
   );
   const newCard = document.createElement("section");
   let genreHTML = "";
-  console.log(movieData)
-  if (movieData.Genres) {
-    if (movieData.Genre.length > 0) {
-      genreHTML = movieData.Genre;
-    } else {
-      genreHTML = "None listed.";
-    }
+  if (movieData.Genre) {
+    genreHTML = movieData.Genre;
   } else {
     genreHTML = "None listed.";
   }
+console.log(movieData)
   // the ratings array is of variable length and contents, so the html gets built with a loop
   let ratingsHTML = "";
   if (movieData.Ratings) {
-    if (movieData.Ratings.length > 0) {
-      for (let i = 0; i < movieData.Ratings.length; i++) {
-        ratingsHTML +=
-          `<p>` +
-          movieData.Ratings[i].Source +
-          ` Rating: ` +
-          movieData.Ratings[i].Value +
-          `</p>`;
-      }
-    } else {
-      ratingsHTML = "<p>Ratings: N/A</p>";
+    for (let i = 0; i < movieData.Ratings.length; i++) {
+      ratingsHTML +=
+        `<p><strong>` +
+        movieData.Ratings[i].Source +
+        ` Rating: ` +
+        movieData.Ratings[i].Value +
+        `</strong></p>`;
     }
   } else {
-    // default if there are no ratings yet, which is common for movies that haven't been released
     ratingsHTML = "<p>Ratings: N/A</p>";
   }
+
   // this creates a new card and fills it with the desired information
   newCard.innerHTML =
     `<section><h2>` +
     movieData.Title +
     `</h2><button class="rmvFavBtn button is-success" data-state = 0 data-tmdbid="` +
     tmdbID +
-    `">Add to Favorites</button><p><strong>Runtime:</strong> ` +
+    `">Add to Favorites</button><p><strong>Runtime: </strong>` +
     movieData.Runtime +
-    `</p><p><strong>Release Date:</strong> ` +
+    `</p><p><strong>Release Date: </strong>` +
     parsedReleaseDate +
-    `</p><p><strong>Genre:</strong> ` +
+    `</p><p><strong>Genre: </strong>` +
     genreHTML +
-    `</p><p><stong>Rating (MPAA):</strong> ` +
+    `</p><p><strong>Rating (MPAA): </strong>` +
     movieData.Rated +
-    `</p><p><strong>Country:</strong> ` +
+    `</p><p><strong>Country: </strong>` +
     movieData.Country +
     `</p><p><strong>Languages: </strong>` +
     movieData.Language +
-    `</p><br><p><strong>Plot:</strong> ` +
+    `</p><br><p><strong>Plot: </strong>` +
     movieData.Plot +
     `</p><br><p><strong>Top Billed Cast: </strong>` +
     movieData.Actors +
-    `</p><br><p><strong>Writer(s):</strong>` +
-    movieData.Writer +
-    `</p><br><p><strong>Director(s):</strong> ` +
+    `</p><br><p><strong>Director(s): </strong>` +
     movieData.Director +
-    `</p><p><strong>Awards: </strong> ` +
+    `</p><p><strong>Writer(s): </strong>` +
+    movieData.Writer +
+    `</p><br><p><strong>Awards: </strong>` +
     movieData.Awards +
     `</p>` +
     ratingsHTML +

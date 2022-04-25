@@ -16,7 +16,7 @@ const today = moment();
 function fetchFaveData() {
   faveListDataArray = [];
   faveList.forEach((element) => {
-    fetch(tmdbBaseURL + element + "?api_key=" + tmdbApiKey).then(function (
+    fetch(`${tmdbBaseURL}${element}?api_key=${tmdbApiKey}`).then(function (
       response
     ) {
       if (response.ok) {
@@ -51,8 +51,7 @@ function populateAllCards() {
     let releaseDateDisplayString = "";
     if (today.isBefore(parsedReleaseDate)) {
       releaseDateDisplayString =
-        parsedReleaseDate +
-        ` - Days Remaining: ${-today.diff(parsedReleaseDate, "days") + 1}`;
+        `${parsedReleaseDate} - Days Remaining: ${-today.diff(parsedReleaseDate, "days") + 1}`;
     } else {
       releaseDateDisplayString = parsedReleaseDate;
     }
@@ -61,7 +60,7 @@ function populateAllCards() {
     if (element.genres.length > 0) {
       genresHTMLString = element.genres[0].name;
       for (let i = 1; i < element.genres.length; i++) {
-        genresHTMLString += ", " + element.genres[i].name;
+        genresHTMLString += `, ${element.genres[i].name}`;
       }
     }
     let newCard = document.createElement("section");

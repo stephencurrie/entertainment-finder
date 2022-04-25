@@ -52,8 +52,7 @@ function populateAllCards() {
     if (today.isBefore(parsedReleaseDate)) {
       releaseDateDisplayString =
         parsedReleaseDate +
-        ` - Days Remaining: ` +
-        (-today.diff(parsedReleaseDate, "days") + 1);
+        ` - Days Remaining: ${-today.diff(parsedReleaseDate, "days") + 1}`;
     } else {
       releaseDateDisplayString = parsedReleaseDate;
     }
@@ -68,28 +67,7 @@ function populateAllCards() {
     let newCard = document.createElement("section");
     newCard.innerHTML =
       // Movie Info
-      `<section><a class="title is-large" href = "expandedResultCard.html?tmdbID=` +
-      element.id +
-      `" target="_blank" rel="noopener noreferrer"><strong>` +
-      element.title +
-      `</strong></a><button class="rmvFavBtn button is-danger" data-tmdbid="` +
-      element.id +
-      `">Remove from Favorites</button>
-      <p><strong>Release Date: </strong>` +
-      releaseDateDisplayString +
-      `</p>
-      <p><strong>Genre(s): </strong>` +
-      genresHTMLString +
-      `</p>
-      <p><strong>Plot: </strong>` +
-      element.overview +
-      `</p></section><figure class="imgClass"><a href="expandedResultCard.html?tmdbID=` +
-      element.id +
-      `" target="_blank" rel="noopener noreferrer"><img onerror="this.onerror=null;this.src='./assets/images/errorImage.jpg';" alt = "` +
-      element.title +
-      ` Poster" src="https://image.tmdb.org/t/p/w342` +
-      element.poster_path +
-      `"></img></a></figure>`;
+      `<section><a class="title is-large" href = "expandedResultCard.html?tmdbID=${element.id}" target="_blank" rel="noopener noreferrer"><strong>${element.title}</strong></a><button class="rmvFavBtn button is-danger" data-tmdbid="${element.id}">Remove from Favorites</button><p><strong>Release Date: </strong>${releaseDateDisplayString}</p><p><strong>Genre(s): </strong>${genresHTMLString}</p><p><strong>Plot: </strong>${element.overview}</p></section><figure class="imgClass"><a href="expandedResultCard.html?tmdbID=${element.id}" target="_blank" rel="noopener noreferrer"><img onerror="this.onerror=null;this.src='./assets/images/errorImage.jpg';" alt = "${element.title} Poster" src="https://image.tmdb.org/t/p/w342${element.poster_path}"></img></a></figure>`;
     newCard.classList = "tile is-child notification is-warning resultCard";
     newCard.dataset.tmdbid = element.id;
 

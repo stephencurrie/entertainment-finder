@@ -18,7 +18,7 @@ var navbarMenu = document.querySelector("#nav-links");
 
 // Calls the tmdb API to generate a list of genres the user can select
 function initGenreSelectCreation() {
-  fetch(tmdbBaseURL + "genre/movie/list?api_key=" + tmdbApiKey).then(function (
+  fetch(`${tmdbBaseURL}genre/movie/list?api_key=${tmdbApiKey}`).then(function (
     response
   ) {
     if (response.ok) {
@@ -57,7 +57,7 @@ function determineParameters() {
   if (genreSelectEl.value !== "") {
     genreListArray.forEach((element) => {
       if (element.name === genreSelectEl.value) {
-        selectedGenreParam = "&with_genres=" + element.id;
+        selectedGenreParam = `&with_genres=${element.id}`;
       }
     });
   }
@@ -70,16 +70,12 @@ function determineParameters() {
 
     // this fetch will call the TMDB API to request the people IDs of the name the user typed
     fetch(
-      tmdbBaseURL +
-        "search/person?api_key=" +
-        tmdbApiKey +
-        "&" +
-        peopleQueryParam
+      `${tmdbBaseURL}search/person?api_key=${tmdbApiKey}&${peopleQueryParam}`
     ).then(function (response) {
       if (response.ok) {
         response.json().then(function (actorIDData) {
           // currently this only returns the first actor in the list; we should probably iterate through it and include all values, separated by commas. Read docs on searching by actor to be sure
-          peopleParam = "&with_people=" + actorIDData.results[0].id;
+          peopleParam = `&with_people=${actorIDData.results[0].id}`;
           fetchMovies();
         });
       }
@@ -93,17 +89,10 @@ function determineParameters() {
 function fetchMovies() {
   let sortingParam = "";
   if (sortingInputEl.value !== "") {
-    sortingParam = "&sort_by=" + sortingInputEl.value;
+    sortingParam = `&sort_by=${sortingInputEl.value}`;
   }
-  const tmdbURL =
-    tmdbBaseURL +
-    "discover/movie?api_key=" +
-    tmdbApiKey +
-    sortingParam +
-    "&include_adult=false" +
-    searchParamsString +
-    selectedGenreParam +
-    peopleParam;
+  const tmdbURL = `${tmdbBaseURL}discover/movie?api_key=${tmdbApiKey}${sortingParam}&include_adult=false${searchParamsString}${selectedGenreParam}${peopleParam}`;
+
   // this is the main API call, this will search by all of the user's parameters and return an array of the 20 most popular movies that fit the params
   fetch(tmdbURL).then(function (response) {
     if (response.ok) {
@@ -124,7 +113,6 @@ function displayCards(tmdbData) {
     const parsedReleaseDate = moment(element.release_date, "YYYY-MM-DD").format(
       "MM/DD/YYYY"
     );
-    console.log(element);
     // these for loops will look up the genre ids given in the tmdb object, and display the genre name related to those ids
     let genresHTMLString = "";
     if (element.genre_ids.length > 0) {
@@ -135,7 +123,7 @@ function displayCards(tmdbData) {
       for (let i = 1; i < element.genre_ids.length; i++) {
         for (let k = 0; k < genreListArray.length; k++) {
           if (element.genre_ids[i] === genreListArray[k].id)
-            genresHTMLString += ", " + genreListArray[k].name;
+            genresHTMLString += `, ${genreListArray[k].name}`;
         }
       }
     } else {
@@ -144,28 +132,8 @@ function displayCards(tmdbData) {
     // this creates a new card and fills it with the desired information
     const newCard = document.createElement("section");
     console.log(element.overview);
-    newCard.innerHTML =
-      `<section><a href = "expandedResultCard.html?tmdbID=` +
-      element.id +
-      `" target="_blank" rel="noopener noreferrer"><strong>` +
-      element.title +
-      `  </strong></a><br><button class="rmvFavBtn button is-success" data-state=0 data-tmdbid="` +
-      element.id +
-      `">Add to Favorites</button><p><strong>Release Date: </strong>` +
-      parsedReleaseDate +
-      `</p><p><strong>Genre(s): </strong>` +
-      genresHTMLString +
-      `</p><p><strong>Plot: </strong>` +
-      element.overview +
-      `</p><p><strong>TMDB Rating: </strong>` +
-      element.vote_average +
-      `/10</p></section><figure><a href = "expandedResultCard.html?tmdbID=` +
-      element.id +
-      `" target="_blank" rel="noopener noreferrer"><img alt = "` +
-      element.title +
-      ` Poster" src="https://image.tmdb.org/t/p/w500` +
-      element.poster_path +
-      `" onerror="this.onerror=null;this.src='./assets/images/errorImage.jpg';"></img></a></figure>`;
+    newCard.innerHTML = `<section><a href = "expandedResultCard.html?tmdbID=${element.id}" target="_blank" rel="noopener noreferrer"><strong>${element.title}</strong></a><br><button class="rmvFavBtn button is-success" data-state=0 data-tmdbid="${element.id}">Add to Favorites</button><p><strong>Release Date: </strong>${parsedReleaseDate}</p><p><strong>Genre(s): </strong>${genresHTMLString}</p><p><strong>Plot: </strong>${element.overview}</p><p><strong>TMDB Rating: </strong>${element.vote_average}/10</p></section><figure><a href = "expandedResultCard.html?tmdbID=${element.id}" target="_blank" rel="noopener noreferrer"><img alt = "${element.title}
+       Poster" src="https://image.tmdb.org/t/p/w500${element.poster_path}" onerror="this.onerror=null;this.src='./assets/images/errorImage.jpg';"></img></a></figure>`;
     newCard.classList = "tile is-child notification is-warning resultCard";
     resultCardContainerEl.append(newCard);
   });
@@ -176,8 +144,8 @@ function displayCards(tmdbData) {
     if (faveList.indexOf(element.dataset.tmdbid) !== -1) {
       element.dataset.state = 1;
       element.innerText = "Remove from Favorites";
-      element.classList.remove("is-success")
-      element.classList.add("is-danger")
+      element.classList.remove("is-success");
+      element.classList.add("is-danger");
     }
   });
 }
@@ -231,7 +199,6 @@ window.addEventListener("focus", function () {
     }
   });
 });
-
 
 searchBtnEl.addEventListener("click", function () {
   determineParameters();

@@ -12,7 +12,7 @@ var navbarMenu = document.querySelector("#nav-links");
 
 // plugs the tmdbID we got from the tmdbID URL param into an api call to to get the imdb ID, which we then use for the next API call
 function getImdbID() {
-  fetch(tmdbBaseURL + tmdbID + "?api_key=" + tmdbApiKey).then(function (
+  fetch(`${tmdbBaseURL}${tmdbID}?api_key=${tmdbApiKey}`).then(function (
     response
   ) {
     if (response.ok) {
@@ -29,8 +29,7 @@ function getImdbID() {
 function getMovieData(tmdbMovieData) {
   posterPath = tmdbMovieData.poster_path;
   const imdbID = tmdbMovieData.imdb_id;
-  var requestUrl =
-    `https://www.omdbapi.com/?i=` + imdbID + `&plot=full&apikey=cf7767a2`;
+  var requestUrl = `https://www.omdbapi.com/?i=${imdbID}&plot=full&apikey=cf7767a2`;
   // this calls the omdb API. the omdb api is preferable because it outputs quite a bit more information, which is
   // preferable for the expanded view
   fetch(requestUrl).then(function (response) {
@@ -60,57 +59,19 @@ function createCard(movieData) {
   } else {
     genreHTML = "None listed.";
   }
-console.log(movieData)
+  console.log(movieData);
   // the ratings array is of variable length and contents, so the html gets built with a loop
   let ratingsHTML = "";
   if (movieData.Ratings) {
     for (let i = 0; i < movieData.Ratings.length; i++) {
-      ratingsHTML +=
-        `<p><strong>` +
-        movieData.Ratings[i].Source +
-        ` Rating: ` +
-        movieData.Ratings[i].Value +
-        `</strong></p>`;
+      ratingsHTML += `<p><strong>${movieData.Ratings[i].Source} Rating: ${movieData.Ratings[i].Value}</strong></p>`;
     }
   } else {
     ratingsHTML = "<p>Ratings: N/A</p>";
   }
 
   // this creates a new card and fills it with the desired information
-  newCard.innerHTML =
-    `<section><h2>` +
-    movieData.Title +
-    `</h2><button class="rmvFavBtn button is-success" data-state = 0 data-tmdbid="` +
-    tmdbID +
-    `">Add to Favorites</button><p><strong>Runtime: </strong>` +
-    movieData.Runtime +
-    `</p><p><strong>Release Date: </strong>` +
-    parsedReleaseDate +
-    `</p><p><strong>Genre: </strong>` +
-    genreHTML +
-    `</p><p><strong>Rating (MPAA): </strong>` +
-    movieData.Rated +
-    `</p><p><strong>Country: </strong>` +
-    movieData.Country +
-    `</p><p><strong>Languages: </strong>` +
-    movieData.Language +
-    `</p><br><p><strong>Plot: </strong>` +
-    movieData.Plot +
-    `</p><br><p><strong>Top Billed Cast: </strong>` +
-    movieData.Actors +
-    `</p><br><p><strong>Director(s): </strong>` +
-    movieData.Director +
-    `</p><p><strong>Writer(s): </strong>` +
-    movieData.Writer +
-    `</p><br><p><strong>Awards: </strong>` +
-    movieData.Awards +
-    `</p>` +
-    ratingsHTML +
-    `</p></section><figure><img onerror="this.onerror=null;this.src='./assets/images/errorImage.jpg';" alt = "` +
-    movieData.Title +
-    ` Poster" src="https://image.tmdb.org/t/p/w780` +
-    posterPath +
-    `"></img></figure>`;
+  newCard.innerHTML = `<section><h2>${movieData.Title} </h2><button class="rmvFavBtn button is-success" data-state = 0 data-tmdbid=" ${tmdbID} ">Add to Favorites</button><p><strong>Runtime: </strong> ${movieData.Runtime}</p><p><strong>Release Date: </strong>${parsedReleaseDate}</p><p><strong>Genre: </strong>${genreHTML}</p><p><strong>Rating (MPAA): </strong>${movieData.Rated}</p><p><strong>Country: </strong>${movieData.Country}</p><p><strong>Languages: </strong>${movieData.Language}</p><br><p><strong>Plot: </strong>${movieData.Plot}</p><br><p><strong>Top Billed Cast: </strong>${movieData.Actors}</p><br><p><strong>Director(s): </strong>${movieData.Director}</p><p><strong>Writer(s): </strong>${movieData.Writer}</p><br><p><strong>Awards: </strong>${movieData.Awards}</p>${ratingsHTML}</p></section><figure><img onerror="this.onerror=null;this.src='./assets/images/errorImage.jpg';" alt = "${movieData.Title}Poster" src="https://image.tmdb.org/t/p/w780${posterPath}"></img></figure>`;
   newCard.classList =
     "notification has-background-info resultCard has-text-white";
   mainCardEl.append(newCard);

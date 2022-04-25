@@ -16,17 +16,7 @@ var getMovieData = function (e) {
   resultContainer.textContent = "";
   var genreID = genreSelected.value;
   var date = moment().add(timeFrameSelected.value, "day").format("YYYY-MM-DD");
-  var apiUrl =
-    baseUrl +
-    "/3/discover/movie/?api_key=" +
-    apiKey +
-    "&region=US&release_date.gte=" +
-    todayDate +
-    "&release_date.lte=" +
-    date +
-    "&with_release_type=3&with_genres=" +
-    genreID +
-    "&sort_by=popularity.desc&sort_by=release_date.asc";
+  var apiUrl = `${baseUrl}/3/discover/movie/?api_key=${apiKey}&region=US&release_date.gte=${todayDate}&release_date.lte=${date}&with_release_type=3&with_genres=${genreID}&sort_by=popularity.desc&sort_by=release_date.asc`;
 
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
@@ -39,28 +29,13 @@ var getMovieData = function (e) {
           for (var i = 0; i < data.results.length; i++) {
             var resultTMDBId = data.results[i].id;
             var posterPath = data.results[i].poster_path;
-            var posterUrl = "https://image.tmdb.org/t/p/w500/" + posterPath;
+            var posterUrl = `https://image.tmdb.org/t/p/w500/${posterPath}`;
             var resultEl = document.createElement("article");
             const parsedReleaseDate = moment(
               data.results[i].release_date,
               "YYYY-MM-DD"
             ).format("MM/DD/YYYY");
-            resultEl.innerHTML =
-              '<section><a href = "expandedResultCard.html?tmdbID=' +
-              resultTMDBId +
-              '" target="_blank" rel="noopener noreferrer">' +
-              data.results[i].original_title +
-              "</a><br><p><strong>Release Date: </strong>" +
-              parsedReleaseDate +
-              '</p><button class="rmvFavBtn button is-success" data-state=0 data-tmdbid="' +
-              resultTMDBId +
-              '">Add to Favorites</button></section><figure><a href = "expandedResultCard.html?tmdbID=' +
-              resultTMDBId +
-              '" target="_blank" rel="noopener noreferrer"><img alt="' +
-              data.results[i].title +
-              ' Poster" src="' +
-              posterUrl +
-              '"></img></a></figure>';
+            resultEl.innerHTML = `<section><a href = "expandedResultCard.html?tmdbID=${resultTMDBId}" target="_blank" rel="noopener noreferrer">${data.results[i].original_title}</a><br><p><strong>Release Date: </strong>${parsedReleaseDate}</p><button class="rmvFavBtn button is-success" data-state=0 data-tmdbid="${resultTMDBId}">Add to Favorites</button></section><figure><a href = "expandedResultCard.html?tmdbID=${resultTMDBId}" target="_blank" rel="noopener noreferrer"><img alt="${data.results[i].title} Poster" src="${posterUrl}"></img></a></figure>`;
 
             resultEl.classList =
               "tile is-child notification is-warning resultCard";
@@ -117,10 +92,7 @@ submitButton.addEventListener("click", getMovieData);
 
 var popularMovies = function () {
   var apiUrl =
-    baseUrl +
-    "/3/movie/now_playing?api_key=" +
-    apiKey +
-    "&language=en-US&page=1/3/movie/now_playing?api_key=";
+    `${baseUrl}/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=1/3/movie/now_playing?api_key=`;
 
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
@@ -136,16 +108,10 @@ var displayPopularMovies = function (popular) {
   for (var i = 0; i < 5; i++) {
     var popularTMDBId = popular[i].id;
     var posterPath = popular[i].poster_path;
-    var posterUrl = "https://image.tmdb.org/t/p/original/" + posterPath;
+    var posterUrl = `https://image.tmdb.org/t/p/original/${posterPath}`;
     var popularEl = document.createElement("figure");
     popularEl.innerHTML =
-      '<a href="expandedResultCard.html?tmdbID=' +
-      popularTMDBId +
-      '" target="_blank" rel="noopener noreferrer"><img onerror="this.onerror=null;this.src=`./assets/images/errorImage.jpg`;" alt = "' +
-      popular[i].title +
-      ' Poster" src="' +
-      posterUrl +
-      '"/></a>';
+      `<a href="expandedResultCard.html?tmdbID=${popularTMDBId}" target="_blank" rel="noopener noreferrer"><img onerror="this.onerror=null;this.src="./assets/images/errorImage.jpg";" alt = "${popular[i].title} Poster" src="${posterUrl}"/></a>`;
     popularEl.classList = "";
     popularMovieContainer.appendChild(popularEl);
   }
